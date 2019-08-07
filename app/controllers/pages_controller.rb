@@ -2,7 +2,7 @@ class PagesController < ApplicationController
     def root
 
     end
-    def index
-        
+    def barpos
+
     end
 end
