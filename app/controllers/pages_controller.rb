@@ -5,4 +5,6 @@ class PagesController < ApplicationController
     def barpos
 
     end
+    def inventory
+    end
 end
