@@ -4,6 +4,7 @@ import { Nav, NavItem, NavLink, Button } from 'reactstrap'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import BarPos from './BarPos'
 import InventoryTable from './InventoryTable'
+import AboutPage from './AboutPage'
 
 class MainApp extends React.Component {
   render () {
@@ -12,7 +13,8 @@ class MainApp extends React.Component {
       <Router>
       <div>
       <h2> Home Page </h2>
-      <Link to='/barpos'> BarPos </Link>
+      <Link to='/barpos'> POS </Link>
+      <Link to='/about'> About Us </Link>
       <Link to='/inventory'> Inventory </Link>
       </div>
       <Route exact path = '/barpos/'
@@ -23,6 +25,7 @@ class MainApp extends React.Component {
           wine_bottle={this.props.wine_bottle}
           />}/>
       <Route exact path='/inventory' component={InventoryTable}/>
+      <Route exact path='/about' component={AboutPage}/>
       </Router>
 
       </React.Fragment>
