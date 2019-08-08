@@ -6,16 +6,38 @@ import BarPos from './BarPos'
 import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
 
+
 class MainApp extends React.Component {
   render () {
     return (
       <React.Fragment>
+
+
       <Router>
       <div>
-      <h2> Home Page </h2>
-      <Link to='/barpos'> POS </Link>
-      <Link to='/about'> About Us </Link>
-      <Link to='/inventory'> Inventory </Link>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <Link to='/' className="navbar-brand"> Glass Track </Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse flex-grow-1 text-right" id="navbarColor03">
+              <ul className="navbar-nav ml-auto flex-nowrap">
+                  <li className="nav-item active">
+                  <Link to='/'> Home </Link>
+                  </li>
+                  <li className="nav-item active">
+                  <Link to='/barpos'> POS </Link>
+                  </li>
+                  <li className="nav-item active">
+                   <Link to='/inventory'> Inventory </Link>
+                  </li>
+                  <li className="nav-item active">
+                  <Link to='/about'> About Us </Link>
+                  </li>
+              </ul>
+          </div>
+         </nav>
       </div>
       <Route exact path = '/barpos/'
       render={(props) => <BarPos
