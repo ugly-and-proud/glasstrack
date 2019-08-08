@@ -8,8 +8,24 @@ import { Nav,
      Table,
      Form
   } from 'reactstrap'
+import { getCount } from '../API_calls/index'
 
 class InventoryTable extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+
+        }
+    }
+
+    componentDidMount (){
+        console.log("Runing a test");
+        getCount()
+            .then(APIcount => {
+                console.log(APIcount);
+            })
+    }
+
   render () {
     return (
       <React.Fragment>
