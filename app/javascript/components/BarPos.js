@@ -47,44 +47,48 @@ class BarPos extends React.Component {
     return (
       <React.Fragment>
       <div>
-        <h4>Bar tender name goes here:</h4>
-        <div className="button-container">
-             <Button color="success"
-             onClick={this.handleClickBeer}
-             >Beer</Button>
-             <Button color="success"
-             onClick={this.handleClickWine}
-             >Wine</Button>
-         </div>
-         <div className='Bill-container'>
-         <Table>
-            <thead>
-                <tr>
-                <th>Drink:</th>
-                <th>Amount:</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Beer</th>
-                    <th>{beer_glass}</th>
-                </tr>
-                <tr>
-                    <th>Wine</th>
-                    <th>{wine_glass}</th>
-                </tr>
-                <tr>
-                    <th>Total price</th>
-                    <th>$12</th>
-                </tr>
-            </tbody>
-         </Table>
-         <Form>
-            <Button>Submit</Button>
-         </Form>
-         <h3>{wine_bottle}</h3>
-         <h3>{beer_bottle}</h3>
-         </div>
+        <h4 className="d-flex flex-row justify-content-center mt-5">Bartender name goes here:</h4>
+        <br></br>
+        <div className="d-flex flex-row justify-content-around">
+            <div className="button-container align-content-left">
+                 <Button id="pos-button" data-toggle='button' className="btn btn-lg btn-block mb-3 active"
+                 onClick={this.handleClickBeer}
+                 >Beer</Button>
+                 <br></br>
+                 <Button id="pos-button" data-toggle='button' className="btn btn-lg btn-block mb-3 active"
+                 onClick={this.handleClickWine}
+                 >Wine</Button>
+             </div>
+             <div className='Bill-container align-content-right w-50'>
+             <Table className="pos-table table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">Drink:</th>
+                    <th scope="col">Amount:</th>
+                    </tr>
+                </thead>
+                <tbody className="table-light">
+                    <tr>
+                        <th>Beer</th>
+                        <th>{beer_glass}</th>
+                    </tr>
+                    <tr>
+                        <th>Wine</th>
+                        <th>{wine_glass}</th>
+                    </tr>
+                    <tr>
+                        <th>Total price</th>
+                        <th>$12</th>
+                    </tr>
+                </tbody>
+             </Table>
+             <Form>
+                <Button className="btn btn-dark">Submit</Button>
+             </Form>
+             <h3>{wine_bottle}</h3>
+             <h3>{beer_bottle}</h3>
+             </div>
+        </div>
       </div>
       </React.Fragment>
     );

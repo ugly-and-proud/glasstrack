@@ -44,13 +44,13 @@ class InventoryTable extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <div>
-        <Table>
+        <div className='inventory-table'>
+        <Table className="table table-hover table-bordered">
            <thead>
                <tr>
                <th>Inventory:</th>
-               <th>Empty accoridng to bar</th>
-               <th>Empty bottles</th>
+               <th>Expected Empty</th>
+               <th>Actual Empty bottles</th>
                <th>Discrepancy</th>
                <th>In stock</th>
                </tr>
