@@ -17,31 +17,67 @@ class InventoryTable extends React.Component {
             stock: {
                 beer_stock:"",
                 wine_stock:""
+            },
+            on_hand:{
+                beer_count:"",
+                wine_count:""
+            },
+            hidden_hand:{
+                beer_hide:"",
+                wine_hide:""
+            },
+            empty:{
+                beer_empty:"",
+                wine_empty:""
+            },
+            discrepancy:{
+                beer_disc:"",
+                wine_disc:""
             }
         }
     }
 
+    handleChange = (e) => {
+        const{ hidden_hand } = this.state
+        hidden_hand[e.target.name] = e.target.value
+        this.setState({
+            hidden_hand
+        })
+    }
 
+    handleClick = ()=> {
+        const { on_hand, hidden_hand } = this.state
+        this.setState({
+            on_hand:{
+                beer_count:hidden_hand.beer_hide,
+                wine_count:hidden_hand.wine_hide
+            }
+        })
+        console.log(on_hand);
+        console.log(hidden_hand);
+    }
     componentDidMount (){
-    	console.log("Runing a test");
     	let {beer_stock, wine_stock} = this.state.stock
     	getCount()
     		.then(APIcount => {
-    			console.log(APIcount);
     			beer_stock =APIcount.counts[0].quantity
-    			console.log(beer_stock);
     			wine_stock =APIcount.counts[1].quantity
-    			console.log(wine_stock);
-    			this.setState({stock:{
+    			this.setState({
+                    stock:{
     				beer_stock,
     				wine_stock
-    			}
+        			},
+                    on_hand:{
+                        beer_count:beer_stock,
+                        wine_count:wine_stock
+                    },
     			})
     		})
-    		console.log(this.state.stock.beer_stock);
-    		console.log(this.state.stock.wine_stock);
+
     }
   render () {
+      const{ beer_count,wine_count} = this.state.on_hand
+      const{ beer_stock,wine_stock} = this.state.stock
     return (
       <React.Fragment>
         <div className='inventory-table'>
@@ -50,9 +86,10 @@ class InventoryTable extends React.Component {
                <tr>
                <th>Inventory:</th>
                <th>Expected Empty</th>
-               <th>Actual Empty bottles</th>
+               <th>Actual Empty</th>
                <th>Discrepancy</th>
-               <th>In stock</th>
+               <th>Expected Stock</th>
+               <th>On Hand</th>
                </tr>
            </thead>
            <tbody>
@@ -60,21 +97,40 @@ class InventoryTable extends React.Component {
                </tr>
                <tr>
                    <th>Beer</th>
+                   <th>{100 - beer_stock}</th>
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th>{this.state.stock.beer_stock}</th>
+                   <th>{beer_stock}</th>
+                   <th>{beer_count}</th>
                </tr>
                <tr>
                    <th>Wine</th>
+                   <th>{100 - wine_stock}</th>
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th>{this.state.stock.wine_stock}</th>
+                   <th>{wine_stock}</th>
+                   <th>{wine_count}</th>
                </tr>
            </tbody>
         </Table>
         </div>
+            <form>
+            <div className="form-group">
+                <label >Beer: </label>
+                <input type="number" className="form-control" placeholder="Beer On-Hand" name="beer_hide"
+                onChange ={this.handleChange}
+
+                />
+            </div>
+                <div className="form-group">
+                <label>Wine: </label>
+                <input type="number" className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
+                onChange ={this.handleChange}
+
+                />
+            </div>
+        </form>
+        <button type="button" className="btn btn-primary" onClick={this.handleClick}>Submit</button>
       </React.Fragment>
     );
   }
