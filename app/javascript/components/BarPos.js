@@ -50,7 +50,7 @@ class BarPos extends React.Component {
         <h4 className="d-flex flex-row justify-content-center mt-5">Bartender name goes here:</h4>
         <br></br>
         <div className="d-flex flex-row justify-content-around">
-            <div className="button-container align-content-left">
+            <div id='buttons-container' className="button-container align-content-left mt-5">
                  <Button id="pos-button" data-toggle='button' className="btn btn-lg btn-block mb-3 active"
                  onClick={this.handleClickBeer}
                  >Beer</Button>
@@ -82,11 +82,9 @@ class BarPos extends React.Component {
                     </tr>
                 </tbody>
              </Table>
-             <Form>
-                <Button className="btn btn-dark">Submit</Button>
+             <Form className='align-content-right'>
+                <Button id='submit-button' className="btn btn-dark">Submit</Button>
              </Form>
-             <h3>{wine_bottle}</h3>
-             <h3>{beer_bottle}</h3>
              </div>
         </div>
       </div>
