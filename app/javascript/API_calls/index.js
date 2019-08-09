@@ -10,7 +10,25 @@ let getCount = function() {
 		})
 }
 
-
+// componentDidMount (){
+// 	console.log("Runing a test");
+// 	let {beer_stock, wine_stock} = this.state.stock
+// 	getCount()
+// 		.then(APIcount => {
+// 			console.log(APIcount);
+// 			beer_stock =APIcount.counts[0].quantity
+// 			console.log(beer_stock);
+// 			wine_stock =APIcount.counts[1].quantity
+// 			console.log(wine_stock);
+// 			this.setState({stock:{
+// 				beer_stock,
+// 				wine_stock
+// 			}
+// 			})
+// 		})
+// 		console.log(this.state.stock.beer_stock);
+// 		console.log(this.state.stock.wine_stock);
+// }
 export  {
 	getCount
 }
