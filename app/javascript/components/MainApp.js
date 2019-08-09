@@ -5,10 +5,17 @@ import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import BarPos from './BarPos'
 import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
+import LogIn from './LogIn'
 
 
 class MainApp extends React.Component {
-  render () {
+  render ()
+   {
+       const {
+         logged_in,
+         sign_in_route,
+         sign_out_route
+       } = this.props
     return (
       <React.Fragment>
 
@@ -22,7 +29,7 @@ class MainApp extends React.Component {
           </button>
 
           <div className="collapse navbar-collapse flex-grow-1 text-right" id="navbarColor03">
-              <ul className="navbar-nav ml-auto flex-nowrap">
+              <ul id='nav' className="navbar-nav ml-auto flex-nowrap">
                   <li className="nav-item active">
                   <Link to='/'> Home </Link>
                   </li>
@@ -35,6 +42,16 @@ class MainApp extends React.Component {
                   <li className="nav-item active">
                   <Link to='/about'> About Us </Link>
                   </li>
+                  {logged_in &&
+                  <li className="nav-item active">
+                        <NavLink href={sign_out_route}> Sign Out </NavLink>
+                  </li>
+                    }
+                  {!logged_in &&
+                  <li className="nav-item active">
+                          <NavLink href={sign_in_route}> Sign In </NavLink>
+                  </li>
+                    }
               </ul>
           </div>
          </nav>
@@ -48,6 +65,9 @@ class MainApp extends React.Component {
           />}/>
       <Route exact path='/inventory' component={InventoryTable}/>
       <Route exact path='/about' component={AboutPage}/>
+      <Route exact path='/login' component={LogIn}/>
+      <Route exact path={sign_out_route}/>
+      <Route exact path={sign_in_route}/>
       </Router>
 
       </React.Fragment>
