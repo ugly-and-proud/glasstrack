@@ -87,7 +87,7 @@ class InventoryTable extends React.Component {
     return (
       <React.Fragment>
         <div className='inventory-table'>
-        <Table className="table table-hover table-bordered">
+        <Table className="table table-hover table-bordered bg-white">
            <thead>
                <tr>
                <th>Inventory:</th>
@@ -120,22 +120,24 @@ class InventoryTable extends React.Component {
            </tbody>
         </Table>
         </div>
-            <form>
-            <div className="form-group">
-                <label >Beer: </label>
-                <input type="number" className="form-control" placeholder="Beer On-Hand" name="beer_hide"
-                onChange ={this.handleChange}
+            <div className = "w-50 mx-auto mt-5 border shadow p-3 mb-5 bg-white rounded">
+                <form>
+                <div className="form-group" >
+                    <label >Beer: </label>
+                    <input type="number" className="form-control border-10" placeholder="Beer On-Hand" name="beer_hide"
+                    onChange ={this.handleChange}
 
-                />
-            </div>
-                <div className="form-group">
-                <label>Wine: </label>
-                <input type="number" className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
-                onChange ={this.handleChange}
-                />
-            </div>
-        </form>
-        <button type="button" className="btn btn-primary" onClick={this.handleClick}>Submit</button>
+                    />
+                </div>
+                    <div className="form-group">
+                    <label>Wine: </label>
+                    <input type="number" className="form-control border-10"  placeholder="Wine On-Hand" name="wine_hide"
+                    onChange ={this.handleChange}
+                    />
+                </div>
+            </form>
+            <button type="button" id='submit-button' className="btn btn-primary center" onClick={this.handleClick}>Submit</button>
+        </div>
       </React.Fragment>
     );
   }
