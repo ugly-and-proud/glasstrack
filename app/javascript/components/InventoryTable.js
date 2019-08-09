@@ -78,6 +78,12 @@ class InventoryTable extends React.Component {
   render () {
       const{ beer_count,wine_count} = this.state.on_hand
       const{ beer_stock,wine_stock} = this.state.stock
+      var exp_emp_beer = 100 - beer_stock
+      var exp_emp_wine = 100 - wine_stock
+      var act_emp_beer = 100 - beer_count
+      var act_emp_wine = 100 - wine_count
+      var disc_beer    =  act_emp_beer - exp_emp_beer
+      var disc_wine    =  act_emp_wine - exp_emp_wine
     return (
       <React.Fragment>
         <div className='inventory-table'>
@@ -97,17 +103,17 @@ class InventoryTable extends React.Component {
                </tr>
                <tr>
                    <th>Beer</th>
-                   <th>{100 - beer_stock}</th>
-                   <th></th>
-                   <th></th>
+                   <th>{exp_emp_beer}</th>
+                   <th>{act_emp_beer}</th>
+                   <th>{disc_beer}</th>
                    <th>{beer_stock}</th>
                    <th>{beer_count}</th>
                </tr>
                <tr>
                    <th>Wine</th>
-                   <th>{100 - wine_stock}</th>
-                   <th></th>
-                   <th></th>
+                   <th>{exp_emp_wine}</th>
+                   <th>{act_emp_wine}</th>
+                   <th>{disc_wine}</th>
                    <th>{wine_stock}</th>
                    <th>{wine_count}</th>
                </tr>
@@ -126,7 +132,6 @@ class InventoryTable extends React.Component {
                 <label>Wine: </label>
                 <input type="number" className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
                 onChange ={this.handleChange}
-
                 />
             </div>
         </form>
