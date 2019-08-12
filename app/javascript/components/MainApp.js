@@ -8,7 +8,6 @@ import AboutPage from './AboutPage'
 import LogIn from './LogIn'
 import logo from './logo.png'
 
-
 class MainApp extends React.Component {
   render ()
    {
