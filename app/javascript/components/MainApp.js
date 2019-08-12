@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { Nav, NavItem, NavLink, Button } from 'reactstrap'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import BarPos from './BarPos'
+import Home from './Home'
 import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
 import LogIn from './LogIn'
@@ -66,6 +67,7 @@ class MainApp extends React.Component {
       <Route exact path='/inventory' component={InventoryTable}/>
       <Route exact path='/about' component={AboutPage}/>
       <Route exact path='/login' component={LogIn}/>
+      <Route exact path='/home' component={Home}/>
       <Route exact path={sign_out_route}/>
       <Route exact path={sign_in_route}/>
       </Router>

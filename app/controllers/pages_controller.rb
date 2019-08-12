@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-    
+
     def root
     end
 
@@ -13,6 +13,9 @@ class PagesController < ApplicationController
     end
 
     def login
+    end
+
+    def home
     end
 
 end
