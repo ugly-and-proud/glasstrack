@@ -6,6 +6,7 @@ import BarPos from './BarPos'
 import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
 import LogIn from './LogIn'
+import logo from './logo.png'
 
 class MainApp extends React.Component {
   render ()
@@ -22,9 +23,7 @@ class MainApp extends React.Component {
       <Router>
       <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-         <Link to='/' className="navbar-brand">
-         <img className="logo"/>
-         </Link>
+          <Link to='/' className="navbar-brand"><img src={logo} alt={"logo"} className='logo' /></Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
