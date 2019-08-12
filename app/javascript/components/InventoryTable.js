@@ -86,23 +86,23 @@ class InventoryTable extends React.Component {
       var disc_wine    =  act_emp_wine - exp_emp_wine
     return (
       <React.Fragment>
-        <div className='inventory-table'>
+        <div className='inventory-table mt-5'>
         <Table className="table table-hover table-bordered">
-           <thead>
+           <thead className='inventory-top-row'>
                <tr>
-               <th>Inventory:</th>
-               <th>Expected Empty</th>
-               <th>Actual Empty</th>
-               <th>Discrepancy</th>
-               <th>Expected Stock</th>
-               <th>On Hand</th>
+               <th className='font-weight-bold'>Inventory:</th>
+               <th className='font-weight-bold'>Expected Empty</th>
+               <th className='font-weight-bold'>Actual Empty</th>
+               <th className='font-weight-bold'>Discrepancy</th>
+               <th className='font-weight-bold'>Expected Stock</th>
+               <th className='font-weight-bold'>On Hand</th>
                </tr>
            </thead>
            <tbody>
                <tr>
                </tr>
                <tr>
-                   <th>Beer</th>
+                   <th className='text-dark'>Beer</th>
                    <th>{exp_emp_beer}</th>
                    <th>{act_emp_beer}</th>
                    <th>{disc_beer}</th>
@@ -110,7 +110,7 @@ class InventoryTable extends React.Component {
                    <th>{beer_count}</th>
                </tr>
                <tr>
-                   <th>Wine</th>
+                   <th className='text-dark'>Wine</th>
                    <th>{exp_emp_wine}</th>
                    <th>{act_emp_wine}</th>
                    <th>{disc_wine}</th>
@@ -120,22 +120,24 @@ class InventoryTable extends React.Component {
            </tbody>
         </Table>
         </div>
-            <form>
-            <div className="form-group">
-                <label >Beer: </label>
-                <input type="number" className="form-control" placeholder="Beer On-Hand" name="beer_hide"
-                onChange ={this.handleChange}
-
-                />
-            </div>
+        <div id='inventory-form' className='border p-3'>
+            <form >
                 <div className="form-group">
-                <label>Wine: </label>
-                <input type="number" className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
-                onChange ={this.handleChange}
-                />
-            </div>
-        </form>
-        <button type="button" className="btn btn-primary" onClick={this.handleClick}>Submit</button>
+                    <label className='font-weight-bold text-dark'>Beer: </label>
+                    <input type="number" id='on-hand' className="form-control" placeholder="Beer On-Hand" name="beer_hide"
+                    onChange ={this.handleChange}
+    
+                    />
+                </div>
+                    <div className="form-group">
+                    <label className='font-weight-bold text-dark'>Wine: </label>
+                    <input type="number" id='on-hand' className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
+                    onChange ={this.handleChange}
+                    />
+                </div>
+                <button type="button" id='submit-button' className="btn btn-dark" onClick={this.handleClick}>Submit</button>
+            </form>
+        </div>
       </React.Fragment>
     );
   }

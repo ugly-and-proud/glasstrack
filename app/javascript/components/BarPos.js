@@ -49,7 +49,7 @@ class BarPos extends React.Component {
       <div>
         <h4 className="d-flex flex-row justify-content-center mt-5">Bartender name goes here:</h4>
         <br></br>
-        <div className="d-flex flex-row justify-content-around">
+        <div className="d-flex mx-auto">
             <div id='buttons-container' className="button-container align-content-left mt-5">
                  <Button id="pos-button" data-toggle='button' className="btn btn-lg btn-block mb-3 active"
                  onClick={this.handleClickBeer}
@@ -59,26 +59,26 @@ class BarPos extends React.Component {
                  onClick={this.handleClickWine}
                  >Wine</Button>
              </div>
-             <div className='Bill-container align-content-right w-50'>
+             <div className='Bill-container align-content-right w-50 mx-auto'>
              <Table className="pos-table table table-hover">
                 <thead>
                     <tr>
-                    <th scope="col">Drink:</th>
-                    <th scope="col">Amount:</th>
+                    <th scope="col" className='font-weight-bold text-dark'>Drink:</th>
+                    <th scope="col" className='font-weight-bold text-dark'>Amount:</th>
                     </tr>
                 </thead>
                 <tbody className="table-light">
                     <tr>
-                        <th>Beer</th>
+                        <th className='font-weight-bold text-dark'>Beer</th>
                         <th>{beer_glass}</th>
                     </tr>
                     <tr>
-                        <th>Wine</th>
+                        <th className='font-weight-bold text-dark'>Wine</th>
                         <th>{wine_glass}</th>
                     </tr>
                     <tr>
-                        <th>Total price</th>
-                        <th>$12</th>
+                        <th className='font-weight-bold text-dark'>Total price</th>
+                        <th className='font-weight-bold text-dark'>$12</th>
                     </tr>
                 </tbody>
              </Table>
