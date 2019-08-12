@@ -90,9 +90,6 @@ class InventoryTable extends React.Component {
         <div className='inventory-table mt-5'>
         <Table className="table table-hover table-bordered">
            <thead className='inventory-top-row'>
-        <div className='inventory-table'>
-        <Table className="table table-hover table-bordered bg-white">
-           <thead>
                <tr>
                <th className='font-weight-bold'>Inventory:</th>
                <th className='font-weight-bold'>Expected Empty</th>
@@ -130,10 +127,9 @@ class InventoryTable extends React.Component {
                     <label className='font-weight-bold text-dark'>Beer: </label>
                     <input type="number" id='on-hand' className="form-control" placeholder="Beer On-Hand" name="beer_hide"
                     onChange ={this.handleChange}
-    
                     />
                 </div>
-                    <div className="form-group">
+                <div className="form-group">
                     <label className='font-weight-bold text-dark'>Wine: </label>
                     <input type="number" id='on-hand' className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
                     onChange ={this.handleChange}
@@ -141,24 +137,6 @@ class InventoryTable extends React.Component {
                 </div>
                 <button type="button" id='submit-button' className="btn btn-dark" onClick={this.handleClick}>Submit</button>
             </form>
-      
-            <div className = "w-50 mx-auto mt-5 border shadow p-3 mb-5 bg-white rounded">
-                <form>
-                <div className="form-group" >
-                    <label >Beer: </label>
-                    <input type="number" className="form-control border-10" placeholder="Beer On-Hand" name="beer_hide"
-                    onChange ={this.handleChange}
-
-                    />
-                </div>
-                    <div className="form-group">
-                    <label>Wine: </label>
-                    <input type="number" className="form-control border-10"  placeholder="Wine On-Hand" name="wine_hide"
-                    onChange ={this.handleChange}
-                    />
-                </div>
-            </form>
-            <button type="button" id='submit-button' className="btn btn-primary center" onClick={this.handleClick}>Submit</button>
         </div>
       </React.Fragment>
     );
