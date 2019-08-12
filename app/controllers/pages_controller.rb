@@ -1,10 +1,9 @@
 class PagesController < ApplicationController
+    
     def root
-
     end
 
     def barpos
-
     end
 
     def inventory
@@ -15,4 +14,5 @@ class PagesController < ApplicationController
 
     def login
     end
+
 end
