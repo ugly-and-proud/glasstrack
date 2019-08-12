@@ -14,7 +14,8 @@ class MainApp extends React.Component {
        const {
          logged_in,
          sign_in_route,
-         sign_out_route
+         sign_out_route,
+         logged_in_as
        } = this.props
     return (
       <React.Fragment>
@@ -23,36 +24,58 @@ class MainApp extends React.Component {
       <Router>
       <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link to='/' className="navbar-brand"><img src={logo} alt={"logo"} className='logo' /></Link>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <Link
+          to='/'
+          className="navbar-brand">
+              <img src={logo}
+              alt={"logo"}
+              className='logo'
+              />
+          </Link>
+          <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarColor02"
+              aria-controls="navbarColor02"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
 
           <div className="collapse navbar-collapse flex-grow-1 text-right" id="navbarColor03">
-              <ul id='nav' className="navbar-nav ml-auto flex-nowrap">
-                  <li className="nav-item active">
-                  <Link to='/'> Home </Link>
-                  </li>
-                  <li className="nav-item active">
-                  <Link to='/barpos'> POS </Link>
-                  </li>
-                  <li className="nav-item active">
-                   <Link to='/inventory'> Inventory </Link>
-                  </li>
-                  <li className="nav-item active">
-                  <Link to='/about'> About Us </Link>
-                  </li>
-                  {logged_in &&
-                  <li className="nav-item active">
-                        <NavLink href={sign_out_route}> Sign Out </NavLink>
-                  </li>
-                    }
+              {logged_in &&
+                  <ul id='nav' className="navbar-nav ml-auto flex-nowrap">
+                      <li className="nav-item active">
+                        <Link to='/'> Home </Link>
+                      </li>
+                      <li className="nav-item active">
+                            <Link to='/barpos'> POS </Link>
+                      </li>
+                      {logged_in_as  &&
+                          <li className="nav-item active">
+                            <Link to='/inventory'> Inventory </Link>
+                          </li>
+                        }
+
+                      <li className="nav-item active">
+                            <Link to='/about'> About Us </Link>
+                      </li>
+                      <li className="nav-item active">
+                            <NavLink href={sign_out_route}> Sign Out </NavLink>
+                      </li>
+                  </ul>
+                }
                   {!logged_in &&
-                  <li className="nav-item active">
-                          <NavLink href={sign_in_route}> Sign In </NavLink>
-                  </li>
+                      <ul id='nav' className="navbar-nav ml-auto flex-nowrap">
+                          <li className="nav-item active">
+                            <Link to='/'> Home </Link>
+                          </li>
+                          <li className="nav-item active">
+                            <NavLink href={sign_in_route}> Sign In </NavLink>
+                          </li>
+                  </ul>
                     }
-              </ul>
           </div>
          </nav>
       </div>
