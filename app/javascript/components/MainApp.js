@@ -67,7 +67,7 @@ class MainApp extends React.Component {
       <Route exact path='/inventory' component={InventoryTable}/>
       <Route exact path='/about' component={AboutPage}/>
       <Route exact path='/login' component={LogIn}/>
-      <Route exact path='/home' component={Home}/>
+      <Route exact path='/' component={Home}/>
       <Route exact path={sign_out_route}/>
       <Route exact path={sign_in_route}/>
       </Router>

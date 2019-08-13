@@ -107,7 +107,6 @@ body {
 
 .landing-bg{
     background-color: #ffd4bb;
-
     width: 40%;
     float: left;
     display: flex;
@@ -122,6 +121,12 @@ body {
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.home-icons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
 }
 
 .pos-table{

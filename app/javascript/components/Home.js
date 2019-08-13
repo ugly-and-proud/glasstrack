@@ -15,6 +15,9 @@ class Home extends React.Component {
             <img src={drinks} alt={"drinks"} className='drinks' />
         </div>
       </div>
+
+
+
       </React.Fragment>
     );
   }
