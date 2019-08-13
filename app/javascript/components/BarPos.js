@@ -8,42 +8,51 @@ import { Nav,
      Table,
      Form
   } from 'reactstrap'
-
+import {changeWine, getPrice, changeBeer} from '../API_calls/index'
 class BarPos extends React.Component {
   constructor(props){
     super(props)
     this.state = {
         beer_glass:0,
         wine_glass:0,
-        beer_bottle:0,
-        wine_bottle:0
+        beer_bottle:2,
+        wine_bottle:0,
+        wine_price: 0,
+        beer_price:0,
     }
   }
 
   handleClickBeer = () =>{
-
-      // If beer_glass % 4 == 0 then substract 1 from the inventory api
-      // Create a hidden state reset
-      let {beer_glass, beer_bottle} = this.state
+      let {beer_glass} = this.state
       this.setState({beer_glass:beer_glass + 1})
-      if (beer_glass === 4) {
-          this.setState({beer_bottle:1})
-      }
-      else if (beer_glass % 4 === 0 && beer_glass > 4) {
-          this.setState({beer_bottle: beer_bottle + 1})
-      }
+
   }
 
   handleClickWine = () =>{
-      let {wine_glass, wine_bottle} = this.state
+      let {wine_glass} = this.state
       this.setState({wine_glass:wine_glass + 1})
-      if (wine_glass % 4 === 0 && wine_glass !== 0) {
-          this.setState({wine_bottle:wine_bottle + 1})
-      }
+  }
+
+  handleSubmit = () => {
+      changeBeer(this.state.beer_bottle)
+  }
+  componentDidMount (){
+      let {beer_price, wine_price} = this.state
+      getPrice()
+          .then(APIcount => {
+              console.log(APIcount.object.item_variation_data.price_money.amount);
+              beer_price =APIcount.object.item_variation_data.price_money.amount
+              wine_price =APIcount.object.item_variation_data.price_money.amount
+              this.setState({
+                  beer_price:beer_price,
+                  wine_price:wine_price
+              })
+          })
+
   }
 
   render () {
-      const {beer_glass,wine_glass,beer_bottle,wine_bottle} = this.state
+      const {beer_glass,wine_glass,beer_bottle,wine_bottle, beer_price, wine_price} = this.state
     return (
       <React.Fragment>
       <div>
@@ -78,12 +87,12 @@ class BarPos extends React.Component {
                     </tr>
                     <tr>
                         <th className='font-weight-bold text-dark'>Total price</th>
-                        <th className='font-weight-bold text-dark'>$12</th>
+                        <th className='font-weight-bold text-dark'>${(beer_price * beer_glass) + (wine_price * wine_glass)}</th>
                     </tr>
                 </tbody>
              </Table>
              <Form className='align-content-right'>
-                <Button id='submit-button' className="btn btn-dark">Submit</Button>
+                <Button id='submit-button' className="btn btn-dark" onClick={this.handleSubmit}>Submit</Button>
              </Form>
              </div>
         </div>

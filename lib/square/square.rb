@@ -67,7 +67,7 @@ beverage_obj = {
 # end
 object_id ="3IDQ2B6D7XC4H6JKNZP37PYT"
 opts = {
-  include_related_objects: true # BOOLEAN | If `true`, the response will include additional objects that are related to the requested object, as follows:  If the `object` field of the response contains a [CatalogItem](#type-catalogitem), its associated [CatalogCategory](#type-catalogcategory), [CatalogTax](#type-catalogtax)es, [CatalogImage](#type-catalogimage)s and [CatalogModifierList](#type-catalogmodifierlist)s will be returned in the `related_objects` field of the response. If the `object` field of the response contains a [CatalogItemVariation](#type-catalogitemvariation), its parent [CatalogItem](#type-catalogitem) will be returned in the `related_objects` field of  the response.  Default value: `false`
+  include_related_objects: true
 }
 begin
   #UpsertCatalogObject
@@ -183,12 +183,12 @@ inventory_obj_change = {
     ]
 
 }
-#
-# begin
-#   #UpsertCatalogObject
-#   result_inventory_change = inventory_api.batch_change_inventory(inventory_obj_change)
-#   p result_inventory_change
-#
-# rescue SquareConnect::ApiError => e
-#   puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
-# end
+
+begin
+  #UpsertCatalogObject
+  result_inventory_change = inventory_api.batch_change_inventory(inventory_obj_change)
+  p result_inventory_change
+
+rescue SquareConnect::ApiError => e
+  puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+end
