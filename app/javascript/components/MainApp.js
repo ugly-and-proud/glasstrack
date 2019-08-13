@@ -16,7 +16,8 @@ class MainApp extends React.Component {
          logged_in,
          sign_in_route,
          sign_out_route,
-         logged_in_as
+         logged_in_as,
+         new_bartender
        } = this.props
     return (
       <React.Fragment>
