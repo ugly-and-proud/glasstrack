@@ -8,7 +8,8 @@ import { Nav,
      Table,
      Form
   } from 'reactstrap'
-  import {getCount} from '../API_calls/index'
+  import {getCount, addBeer, addWine} from '../API_calls/index'
+
 
 class InventoryTable extends React.Component {
     constructor(props){
@@ -37,7 +38,14 @@ class InventoryTable extends React.Component {
         }
     }
 
-    handleChange = (e) => {
+    handleChangeCount = (e) => {
+        const{ on_hand } = this.state
+        on_hand[e.target.name] = e.target.value
+        this.setState({
+            on_hand
+        })
+    }
+    handleChangeStock = (e) => {
         const{ hidden_hand } = this.state
         hidden_hand[e.target.name] = e.target.value
         this.setState({
@@ -45,16 +53,41 @@ class InventoryTable extends React.Component {
         })
     }
 
-    handleClick = ()=> {
-        const { on_hand, hidden_hand } = this.state
+    handleClick = () => {
+        this.props.handleCount(this.state.on_hand.beer_count, this.state.on_hand.wine_count)
         this.setState({
             on_hand:{
-                beer_count:hidden_hand.beer_hide,
-                wine_count:hidden_hand.wine_hide
+                beer_count:'',
+                wine_count:''
             }
         })
-        console.log(on_hand);
-        console.log(hidden_hand);
+    }
+
+    handleStockChange = () => {
+        const { hidden_hand } = this.state
+        let {beer_stock, wine_stock} = this.state.stock
+        addBeer(hidden_hand.beer_hide)
+        addWine(hidden_hand.wine_hide)
+        this.setState({
+            hidden_hand:{
+                beer_hide:'',
+                wine_hide:'',
+            }
+        })
+    }
+    componentDidUpdate (){
+        let {beer_stock, wine_stock} = this.state.stock
+        getCount()
+    		.then(APIcount => {
+    			beer_stock =APIcount.counts[0].quantity
+    			wine_stock =APIcount.counts[1].quantity
+    			this.setState({
+                    stock:{
+    				beer_stock,
+    				wine_stock
+        			},
+    			})
+    		})
     }
     componentDidMount (){
     	let {beer_stock, wine_stock} = this.state.stock
@@ -75,8 +108,9 @@ class InventoryTable extends React.Component {
     		})
 
     }
+
   render () {
-      const{ beer_count,wine_count} = this.state.on_hand
+      const{ beer_count,wine_count} = this.props
       const{ beer_stock,wine_stock} = this.state.stock
       var exp_emp_beer = 100 - beer_stock
       var exp_emp_wine = 100 - wine_stock
@@ -96,7 +130,7 @@ class InventoryTable extends React.Component {
                <th className='font-weight-bold'>Actual Empty</th>
                <th className='font-weight-bold'>Discrepancy</th>
                <th className='font-weight-bold'>Expected Stock</th>
-               <th className='font-weight-bold'>On Hand</th>
+               <th className='font-weight-bold'>Physical Count</th>
                </tr>
            </thead>
            <tbody>
@@ -122,20 +156,46 @@ class InventoryTable extends React.Component {
         </Table>
         </div>
         <div id='inventory-form' className='border p-3 mb-5'>
+
+        <div id='inventory-form' className='border p-3'>
+            <h4>Physical Count: </h4>
+
             <form >
                 <div className="form-group">
                     <label className='font-weight-bold text-dark'>Beer: </label>
-                    <input type="number" id='on-hand' className="form-control" placeholder="Beer On-Hand" name="beer_hide"
-                    onChange ={this.handleChange}
+                    <input type="number" id='on-hand' className="form-control" placeholder="Beer On-Hand" name="beer_count"
+                    onChange ={this.handleChangeCount}
+                    value = {this.state.on_hand.beer_count}
                     />
                 </div>
                 <div className="form-group">
                     <label className='font-weight-bold text-dark'>Wine: </label>
-                    <input type="number" id='on-hand' className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
-                    onChange ={this.handleChange}
+                    <input type="number" id='on-hand' className="form-control"  placeholder="Wine On-Hand" name="wine_count"
+                    onChange ={this.handleChangeCount}
+                    value = {this.state.on_hand.wine_count}
                     />
                 </div>
                 <button type="button" id='submit-button' className="btn btn-dark" onClick={this.handleClick}>Submit</button>
+            </form>
+        </div>
+        <div id='inventory-form' className='border p-3'>
+            <h4>Add to Inventory: </h4>
+            <form >
+                <div className="form-group">
+                    <label className='font-weight-bold text-dark'>Beer: </label>
+                    <input type="number" id='stock' className="form-control" placeholder="Beer On-Hand" name="beer_hide"
+                    onChange ={this.handleChangeStock}
+                    value = {this.state.hidden_hand.beer_hide}
+                    />
+                </div>
+                <div className="form-group">
+                    <label className='font-weight-bold text-dark'>Wine: </label>
+                    <input type="number" id='stock' className="form-control"  placeholder="Wine On-Hand" name="wine_hide"
+                    onChange ={this.handleChangeStock}
+                    value = {this.state.hidden_hand.wine_hide}
+                    />
+                </div>
+                <button type="button" id='submit-button' className="btn btn-dark" onClick={this.handleStockChange}>Submit</button>
             </form>
         </div>
       </React.Fragment>
