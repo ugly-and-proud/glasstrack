@@ -86,20 +86,7 @@ class InventoryTable extends React.Component {
             }
         })
     }
-    // componentDidUpdate (){
-    //     let {beer_stock, wine_stock} = this.state.stock
-    //     getCount()
-    // 		.then(APIcount => {
-    // 			beer_stock =APIcount.counts[0].quantity
-    // 			wine_stock =APIcount.counts[1].quantity
-    // 			this.setState({
-    //                 stock:{
-    // 				beer_stock,
-    // 				wine_stock
-    //     			},
-    // 			})
-    // 		})
-    // }
+
     componentDidMount (){
     	let {beer_stock, wine_stock} = this.state.stock
     	getCount()
@@ -136,7 +123,7 @@ class InventoryTable extends React.Component {
         <Table className="table table-hover table-bordered">
            <thead className='inventory-top-row'>
                <tr>
-               <th className='font-weight-bold'>Inventory:</th>
+               <th className='font-weight-bold'>Inventory</th>
                <th className='font-weight-bold'>Expected Empty</th>
                <th className='font-weight-bold'>Actual Empty</th>
                <th className='font-weight-bold'>Discrepancy</th>
@@ -167,8 +154,6 @@ class InventoryTable extends React.Component {
         </Table>
         </div>
         <div id='inventory-form' className='border p-3 mb-5'>
-
-        <div id='inventory-form' className='border p-3'>
             <h4>Physical Count: </h4>
 
             <form >
