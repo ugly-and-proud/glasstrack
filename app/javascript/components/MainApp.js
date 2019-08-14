@@ -8,7 +8,7 @@ import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
 import LogIn from './LogIn'
 import logo from './logo.png'
-
+ import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
 class MainApp extends React.Component {
     constructor(props){
       super(props)
@@ -42,11 +42,12 @@ class MainApp extends React.Component {
             wine_glass_leftover = 0
         }
         if (wine_glass < 4 && wine_glass_leftover === 0) {
+            console.log("entered the second if");
             wine_glass_leftover = wine_glass
             wine_glass = 0
             wine_bottle = 0
         }
-        if (wine_glass >= 4 && wine_glass_leftover === 0) {
+        if (wine_glass >= 4 && wine_glass_leftover === 0 && wine_bottle === 0) {
             wine_glass_leftover = wine_glass % 4
             wine_bottle = Math.floor(wine_glass/4)
             wine_glass = 0
@@ -60,7 +61,7 @@ class MainApp extends React.Component {
             beer_glass = 0
             beer_bottle = 0
         }
-        if (beer_glass >= 4 && beer_glass_leftover === 0) {
+        if (beer_glass >= 4 && beer_glass_leftover === 0 && beer_bottle === 0) {
             beer_glass_leftover = beer_glass % 4
             beer_bottle = Math.floor(beer_glass/4)
             beer_glass = 0
@@ -73,21 +74,12 @@ class MainApp extends React.Component {
             wine_bottle,
             beer_bottle
         })
-        this.showThings()
     }
-    showThings = () => {
-        let {beer_glass,
-        beer_glass_leftover,
-        wine_glass,
-        wine_glass_leftover,
-        wine_bottle,
-        beer_bottle}  = this.state
-        console.log("glasses");
-        console.log(beer_glass);
-        console.log("left over");
-        console.log(beer_glass_leftover);
-        console.log("bottles");
-        console.log(beer_bottle);
+
+    componentDidUpdate (){
+        const {beer_bottle, wine_bottle} = this.state
+        changeBeer(beer_bottle)
+        changeWine(wine_bottle)
     }
 
   render ()

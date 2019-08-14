@@ -9,6 +9,7 @@ import { Nav,
      Form
   } from 'reactstrap'
   import {getCount} from '../API_calls/index'
+  import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
 
 class InventoryTable extends React.Component {
     constructor(props){
