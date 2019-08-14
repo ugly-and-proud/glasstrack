@@ -54,6 +54,7 @@ class InventoryTable extends React.Component {
     }
 
     handleClick = () => {
+        const {hidden_hand} = this.state
         this.props.handleCount(this.state.on_hand.beer_count, this.state.on_hand.wine_count)
         this.setState({
             on_hand:{
@@ -68,6 +69,16 @@ class InventoryTable extends React.Component {
         let {beer_stock, wine_stock} = this.state.stock
         addBeer(hidden_hand.beer_hide)
         addWine(hidden_hand.wine_hide)
+        getCount().then(APIcount => {
+            beer_stock = APIcount.counts[0].quantity
+            wine_stock = APIcount.counts[1].quantity
+            this.setState({
+                stock:{
+                    beer_stock:(parseInt(beer_stock) + parseInt(hidden_hand.beer_hide)),
+                    wine_stock:parseInt(wine_stock) + parseInt(hidden_hand.wine_hide),
+                },
+            })
+        })
         this.setState({
             hidden_hand:{
                 beer_hide:'',
@@ -75,20 +86,20 @@ class InventoryTable extends React.Component {
             }
         })
     }
-    componentDidUpdate (){
-        let {beer_stock, wine_stock} = this.state.stock
-        getCount()
-    		.then(APIcount => {
-    			beer_stock =APIcount.counts[0].quantity
-    			wine_stock =APIcount.counts[1].quantity
-    			this.setState({
-                    stock:{
-    				beer_stock,
-    				wine_stock
-        			},
-    			})
-    		})
-    }
+    // componentDidUpdate (){
+    //     let {beer_stock, wine_stock} = this.state.stock
+    //     getCount()
+    // 		.then(APIcount => {
+    // 			beer_stock =APIcount.counts[0].quantity
+    // 			wine_stock =APIcount.counts[1].quantity
+    // 			this.setState({
+    //                 stock:{
+    // 				beer_stock,
+    // 				wine_stock
+    //     			},
+    // 			})
+    // 		})
+    // }
     componentDidMount (){
     	let {beer_stock, wine_stock} = this.state.stock
     	getCount()
