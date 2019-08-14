@@ -15,7 +15,7 @@ class BarPos extends React.Component {
     this.state = {
         beer_glass:0,
         wine_glass:0,
-        beer_bottle:2,
+        beer_bottle:0,
         wine_bottle:0,
         wine_price: 0,
         beer_price:0,
