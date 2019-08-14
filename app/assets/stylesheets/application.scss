@@ -103,6 +103,8 @@ body {
     display: flex;
     width: 60%;
     height: 600px;
+    align-self: center;
+    object-fit: cover;
 }
 
 .landing-bg{
@@ -146,6 +148,42 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+.calc{
+    background-image: url("calc.png");
+    height: 90px;
+    width: 90px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.inventory{
+    background-image: url("inventory.png");
+    height: 90px;
+    width: 90px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.staff{
+    background-image: url("staff.png");
+    height: 90px;
+    width: 90px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 .inventory-table{
     overflow: auto;
@@ -203,11 +241,33 @@ body {
     align-items: center;
     justify-content: center;
 }
+.content-section{
+    line-height: normal;
+}
+.offer-titles{
+    vertical-align: baseline;
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+}
+.offer-text-field{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.offer-text{
+    text-align: center;
+    margin-top: 20px;
+}
 
 .about-card-container{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 25px;
 }
 
 .about-card{
@@ -332,11 +392,11 @@ body {
   /* Set rules to fill background */
   min-height: 100%;
   min-width: 1024px;
-	
+
   /* Set up proportionate scaling */
   width: 100%;
   height: auto;
-	
+
   /* Set up positioning */
   position: fixed;
   top: 0;

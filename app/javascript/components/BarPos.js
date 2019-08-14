@@ -34,7 +34,6 @@ class BarPos extends React.Component {
       this.props.sendOrder()
       let {beer_glass, wine_glass} = this.props
       let {beer_bottle, wine_bottle} = this.props
-
   }
 
   componentDidMount (){

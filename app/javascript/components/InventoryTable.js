@@ -155,8 +155,11 @@ class InventoryTable extends React.Component {
            </tbody>
         </Table>
         </div>
+        <div id='inventory-form' className='border p-3 mb-5'>
+
         <div id='inventory-form' className='border p-3'>
             <h4>Physical Count: </h4>
+
             <form >
                 <div className="form-group">
                     <label className='font-weight-bold text-dark'>Beer: </label>
