@@ -8,7 +8,7 @@ import { Nav,
      Table,
      Form
   } from 'reactstrap'
-import {changeWine, getPrice, changeBeer} from '../API_calls/index'
+import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
 class BarPos extends React.Component {
   constructor(props){
     super(props)
@@ -27,45 +27,29 @@ class BarPos extends React.Component {
       this.props.changeWineGlass()
   }
 
-  // calculateBottles = (beerGlasses, wineGlasses) => {
-  //     let { beer_bottle, wine_bottle} = this.state
-  //     if (beerGlasses < 4) {
-  //
-  //     }
-  //     else {
-  //         beer_bottle = Math.floor(beerGlasses/4)
-  //     }
-  //     if (wineGlasses < 4) {
-  //
-  //     }
-  //     else {
-  //         wine_bottle = Math.floor(wineGlasses/4)
-  //     }
-  //     this.setState({
-  //         beer_bottle,
-  //         wine_bottle
-  //     })
-  // }
   handleSubmit = () => {
       this.props.sendOrder()
       let {beer_glass, wine_glass} = this.props
       let {beer_bottle, wine_bottle} = this.props
-      console.log('POS');
-      console.log(beer_glass);
-      console.log('POS for bottle');
-      console.log(beer_bottle);
       changeBeer(beer_bottle)
       changeWine(wine_bottle)
+
   }
+
   componentDidMount (){
       let {beer_price, wine_price} = this.state
-      getPrice()
+      getPriceWine()
           .then(APIcount => {
-              beer_price =APIcount.object.item_variation_data.price_money.amount
               wine_price =APIcount.object.item_variation_data.price_money.amount
               this.setState({
-                  beer_price:beer_price,
                   wine_price:wine_price
+              })
+          })
+      getPriceBeer()
+          .then(APIcount => {
+              beer_price =APIcount.object.item_variation_data.price_money.amount
+              this.setState({
+                  beer_price:beer_price
               })
           })
 

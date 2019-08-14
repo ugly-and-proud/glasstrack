@@ -32,10 +32,27 @@ class InventoriesController < ApplicationController
         render  json:result_inventory_count
     end
 
-    def get_price
+    def get_price_beer
         api_instance = SquareConnect::CatalogApi.new
         inventory_api = SquareConnect::InventoryApi.new
         object_id ="3IDQ2B6D7XC4H6JKNZP37PYT"
+        opts = {
+          include_related_objects: true
+        }
+        begin
+          #UpsertCatalogObject
+          item_price = api_instance.retrieve_catalog_object(object_id,opts)
+          # p result1
+          p item_price.object.item_variation_data.name
+        rescue SquareConnect::ApiError => e
+          puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+        end
+        render json:item_price
+    end
+    def get_price_wine
+        api_instance = SquareConnect::CatalogApi.new
+        inventory_api = SquareConnect::InventoryApi.new
+        object_id ="JPIVA25GH6HPBFEXOWDB47PO"
         opts = {
           include_related_objects: true
         }

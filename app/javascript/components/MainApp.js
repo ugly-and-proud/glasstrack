@@ -73,7 +73,6 @@ class MainApp extends React.Component {
             wine_bottle,
             beer_bottle
         })
-        this.showThings()
     }
     showThings = () => {
         let {beer_glass,
