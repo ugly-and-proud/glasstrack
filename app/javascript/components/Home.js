@@ -7,7 +7,7 @@ class Home extends React.Component {
   render () {
     return (
       <React.Fragment>
-      
+
       <section className="content-section" id="top">
         <div className='home-container'>
           <div className="landing-bg">

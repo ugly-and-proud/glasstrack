@@ -44,12 +44,12 @@ class MainApp extends React.Component {
         if (wine_glass < 4 && wine_glass_leftover === 0) {
             wine_glass_leftover = wine_glass
             wine_glass = 0
+            wine_bottle = 0
         }
         if (wine_glass >= 4 && wine_glass_leftover === 0) {
             wine_glass_leftover = wine_glass % 4
             wine_bottle = Math.floor(wine_glass/4)
             wine_glass = 0
-            wine_bottle = 0
         }
         if (beer_glass_leftover !== 0) {
             beer_glass = beer_glass + beer_glass_leftover
