@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get '/inventories/get_price' => "inventories#get_price"
   post '/inventories/change_wine' => "inventories#change_wine"
   post '/inventories/change_beer' => "inventories#change_beer"
+  post '/inventories/add_beer' => "inventories#add_beer"
+  post '/inventories/add_wine' => "inventories#add_wine"
 
 end

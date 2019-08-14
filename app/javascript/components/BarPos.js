@@ -13,7 +13,6 @@ class BarPos extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-
         wine_price: 0,
         beer_price:0,
     }
@@ -25,7 +24,7 @@ class BarPos extends React.Component {
   }
 
   handleClickWine = () =>{
-      this.props.changeBeerGlass()
+      this.props.changeWineGlass()
   }
 
   // calculateBottles = (beerGlasses, wineGlasses) => {
@@ -55,8 +54,8 @@ class BarPos extends React.Component {
       console.log(beer_glass);
       console.log('POS for bottle');
       console.log(beer_bottle);
-      // changeBeer(beer_bottle)
-      // changeWine(wine_bottle)
+      changeBeer(beer_bottle)
+      changeWine(wine_bottle)
   }
   componentDidMount (){
       let {beer_price, wine_price} = this.state

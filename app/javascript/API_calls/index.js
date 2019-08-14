@@ -21,7 +21,7 @@ let getPrice = function() {
 
 let changeWine = function(change_object) {
 // the function name getTrolls is intended to remind you of the restful rails route --> GET '/trolls'.
-	var an_object = {
+	var an_object_wine = {
 		wine_bottle:change_object
 	}
 	console.log('Index Change Wine');
@@ -29,32 +29,56 @@ let changeWine = function(change_object) {
 	return fetch(BASE + '/inventories/change_wine',{
 		method: 'POST',
 		headers: {'Content-Type':'application/json'},
-		body: JSON.stringify(an_object)
+		body: JSON.stringify(an_object_wine)
 	}).then((resp) => {
-			let json = resp.json()
-			return json
+			return resp.json()
 		})
 }
 let changeBeer = function(change_object) {
-// the function name getTrolls is intended to remind you of the restful rails route --> GET '/trolls'.
-	var an_object = {
+	var an_object_beer = {
 		beer_bottle:change_object
 	}
-	console.log('Index Change Wine');
+	console.log('Index Change beer');
 	console.log(change_object);
 	return fetch(BASE + '/inventories/change_beer',{
 		method: 'POST',
 		headers: {'Content-Type':'application/json'},
-		body: JSON.stringify(an_object)
+		body: JSON.stringify(an_object_beer)
 	}).then((resp) => {
-			let json = resp.json()
-			return json
+			return resp.json()
 		})
+}
+
+let addBeer = function (change_object) {
+	var add_beer = {
+		beer_bottle:change_object
+	}
+	return fetch(BASE +'/inventories/add_beer',{
+		method: 'POST',
+		headers: {'Content-Type':'application/json'},
+		body: JSON.stringify(add_beer)
+	}).then((resp) => {
+		return resp.json()
+	})
+}
+let addWine = function (change_object) {
+	var add_wine = {
+		wine_bottle:change_object
+	}
+	return fetch(BASE +'/inventories/add_wine',{
+		method: 'POST',
+		headers: {'Content-Type':'application/json'},
+		body: JSON.stringify(add_wine)
+	}).then((resp) => {
+		return resp.json()
+	})
 }
 
 export  {
 	getCount,
 	changeWine,
 	getPrice,
-	changeBeer
+	changeBeer,
+	addBeer,
+	addWine
 }
