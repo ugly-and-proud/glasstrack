@@ -8,7 +8,13 @@ import { Nav,
      Table,
      Form
   } from 'reactstrap'
+
 import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
+=======
+import {changeWine, getPrice, changeBeer} from '../API_calls/index'
+
+
+
 class BarPos extends React.Component {
   constructor(props){
     super(props)
@@ -97,6 +103,7 @@ class BarPos extends React.Component {
              <Form className='align-content-right'>
                 <Button id='submit-button' className="btn btn-dark" onClick={this.handleSubmit}>Submit</Button>
              </Form>
+
              </div>
         </div>
       </div>
