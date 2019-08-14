@@ -8,7 +8,8 @@ import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
 import LogIn from './LogIn'
 import logo from './logo.png'
- import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
+
+import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
 class MainApp extends React.Component {
     constructor(props){
       super(props)
@@ -19,9 +20,16 @@ class MainApp extends React.Component {
           wine_glass_leftover:0,
           beer_bottle:0,
           wine_bottle:0,
+          wine_count:0,
+          beer_count:0
       }
     }
-
+    handlePhysCount = (beer, wine) => {
+        this.setState({
+            wine_count:wine,
+            beer_count:beer
+        })
+    }
     handleClickBeer = () =>{
         let {beer_glass} = this.state
         this.setState({beer_glass:beer_glass + 1})
@@ -42,12 +50,11 @@ class MainApp extends React.Component {
             wine_glass_leftover = 0
         }
         if (wine_glass < 4 && wine_glass_leftover === 0) {
-            console.log("entered the second if");
             wine_glass_leftover = wine_glass
             wine_glass = 0
             wine_bottle = 0
         }
-        if (wine_glass >= 4 && wine_glass_leftover === 0 && wine_bottle === 0) {
+        if (wine_glass >= 4 && wine_glass_leftover === 0) {
             wine_glass_leftover = wine_glass % 4
             wine_bottle = Math.floor(wine_glass/4)
             wine_glass = 0
@@ -61,10 +68,14 @@ class MainApp extends React.Component {
             beer_glass = 0
             beer_bottle = 0
         }
-        if (beer_glass >= 4 && beer_glass_leftover === 0 && beer_bottle === 0) {
+        if (beer_glass >= 4 && beer_glass_leftover === 0) {
             beer_glass_leftover = beer_glass % 4
+            console.log('beer glass');
+            console.log(beer_glass);
             beer_bottle = Math.floor(beer_glass/4)
             beer_glass = 0
+            console.log('beer Bottle');
+            console.log(beer_bottle);
         }
         this.setState({
             beer_glass,
@@ -74,10 +85,6 @@ class MainApp extends React.Component {
             wine_bottle,
             beer_bottle
         })
-    }
-
-    componentDidUpdate (){
-        const {beer_bottle, wine_bottle} = this.state
         changeBeer(beer_bottle)
         changeWine(wine_bottle)
     }
@@ -155,20 +162,24 @@ class MainApp extends React.Component {
       </div>
       <Route exact path = '/barpos/'
       render={(props) => <BarPos
-          beer_glass={this.state.beer_glass}
-          wine_glass={this.state.wine_glass}
-          beer_bottle= {this.state.beer_bottle}
-          wine_bottle= {this.state.wine_bottle}
-          changeBeerGlass ={this.handleClickBeer}
-          changeWineGlass ={this.handleClickWine}
-          sendOrder = {this.sendOrder}
+          beer_glass      = {this.state.beer_glass}
+          wine_glass      = {this.state.wine_glass}
+          beer_bottle     = {this.state.beer_bottle}
+          wine_bottle     = {this.state.wine_bottle}
+          changeBeerGlass = {this.handleClickBeer}
+          changeWineGlass = {this.handleClickWine}
+          sendOrder       = {this.sendOrder}
           />}/>
-      <Route exact path='/inventory' component={InventoryTable}/>
-      <Route exact path='/about' component={AboutPage}/>
-      <Route exact path='/login' component={LogIn}/>
-      <Route exact path='/' component={Home}/>
-      <Route exact path={sign_out_route}/>
-      <Route exact path={sign_in_route}/>
+      <Route exact path='/inventory' render={(props) => <InventoryTable
+          beer_count  = {this.state.beer_count}
+          wine_count  = {this.state.wine_count}
+          handleCount = {this.handlePhysCount}
+          />}/>
+      <Route exact path = '/about' component={AboutPage}/>
+      <Route exact path = '/login' component={LogIn}/>
+      <Route exact path = '/' component={Home}/>
+      <Route exact path = {sign_out_route}/>
+      <Route exact path = {sign_in_route}/>
       </Router>
 
       </React.Fragment>
