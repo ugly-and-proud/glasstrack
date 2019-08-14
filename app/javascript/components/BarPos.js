@@ -13,34 +13,55 @@ class BarPos extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-        beer_glass:0,
-        wine_glass:0,
-        beer_bottle:0,
-        wine_bottle:0,
+
         wine_price: 0,
         beer_price:0,
     }
   }
 
   handleClickBeer = () =>{
-      let {beer_glass} = this.state
-      this.setState({beer_glass:beer_glass + 1})
+      this.props.changeBeerGlass()
 
   }
 
   handleClickWine = () =>{
-      let {wine_glass} = this.state
-      this.setState({wine_glass:wine_glass + 1})
+      this.props.changeBeerGlass()
   }
 
+  // calculateBottles = (beerGlasses, wineGlasses) => {
+  //     let { beer_bottle, wine_bottle} = this.state
+  //     if (beerGlasses < 4) {
+  //
+  //     }
+  //     else {
+  //         beer_bottle = Math.floor(beerGlasses/4)
+  //     }
+  //     if (wineGlasses < 4) {
+  //
+  //     }
+  //     else {
+  //         wine_bottle = Math.floor(wineGlasses/4)
+  //     }
+  //     this.setState({
+  //         beer_bottle,
+  //         wine_bottle
+  //     })
+  // }
   handleSubmit = () => {
-      changeBeer(this.state.beer_bottle)
+      this.props.sendOrder()
+      let {beer_glass, wine_glass} = this.props
+      let {beer_bottle, wine_bottle} = this.props
+      console.log('POS');
+      console.log(beer_glass);
+      console.log('POS for bottle');
+      console.log(beer_bottle);
+      // changeBeer(beer_bottle)
+      // changeWine(wine_bottle)
   }
   componentDidMount (){
       let {beer_price, wine_price} = this.state
       getPrice()
           .then(APIcount => {
-              console.log(APIcount.object.item_variation_data.price_money.amount);
               beer_price =APIcount.object.item_variation_data.price_money.amount
               wine_price =APIcount.object.item_variation_data.price_money.amount
               this.setState({
@@ -52,7 +73,8 @@ class BarPos extends React.Component {
   }
 
   render () {
-      const {beer_glass,wine_glass,beer_bottle,wine_bottle, beer_price, wine_price} = this.state
+      const { beer_price, wine_price} = this.state
+      let { beer_glass, wine_glass} = this.props
     return (
       <React.Fragment>
       <div>

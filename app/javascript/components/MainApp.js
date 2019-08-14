@@ -10,6 +10,86 @@ import LogIn from './LogIn'
 import logo from './logo.png'
 
 class MainApp extends React.Component {
+    constructor(props){
+      super(props)
+      this.state = {
+          beer_glass:0,
+          wine_glass:0,
+          beer_glass_leftover:0,
+          wine_glass_leftover:0,
+          beer_bottle:0,
+          wine_bottle:0,
+      }
+    }
+
+    handleClickBeer = () =>{
+        let {beer_glass} = this.state
+        this.setState({beer_glass:beer_glass + 1})
+
+    }
+
+    handleClickWine = () =>{
+        let {wine_glass} = this.state
+        this.setState({wine_glass:wine_glass + 1})
+    }
+    sendOrder = () => {
+        let {wine_glass,wine_glass_leftover} = this.state
+        let {beer_glass,beer_glass_leftover} = this.state
+        let {beer_bottle,wine_bottle} = this.state
+
+        if (wine_glass_leftover !== 0) {
+            wine_glass = wine_glass + wine_glass_leftover
+            wine_glass_leftover = 0
+        }
+        if (wine_glass < 4 && wine_glass_leftover === 0) {
+            wine_glass_leftover = wine_glass
+            wine_glass = 0
+        }
+        if (wine_glass >= 4 && wine_glass_leftover === 0) {
+            wine_glass_leftover = wine_glass % 4
+            wine_bottle = Math.floor(wine_glass/4)
+            wine_glass = 0
+            wine_bottle = 0
+        }
+        if (beer_glass_leftover !== 0) {
+            beer_glass = beer_glass + beer_glass_leftover
+            beer_glass_leftover = 0
+        }
+        if (beer_glass < 4 && beer_glass_leftover === 0) {
+            beer_glass_leftover = beer_glass
+            beer_glass = 0
+            beer_bottle = 0
+        }
+        if (beer_glass >= 4 && beer_glass_leftover === 0) {
+            beer_glass_leftover = beer_glass % 4
+            beer_bottle = Math.floor(beer_glass/4)
+            beer_glass = 0
+        }
+        this.setState({
+            beer_glass,
+            beer_glass_leftover,
+            wine_glass,
+            wine_glass_leftover,
+            wine_bottle,
+            beer_bottle
+        })
+        this.showThings()
+    }
+    showThings = () => {
+        let {beer_glass,
+        beer_glass_leftover,
+        wine_glass,
+        wine_glass_leftover,
+        wine_bottle,
+        beer_bottle}  = this.state
+        console.log("glasses");
+        console.log(beer_glass);
+        console.log("left over");
+        console.log(beer_glass_leftover);
+        console.log("bottles");
+        console.log(beer_bottle);
+    }
+
   render ()
    {
        const {
@@ -83,10 +163,13 @@ class MainApp extends React.Component {
       </div>
       <Route exact path = '/barpos/'
       render={(props) => <BarPos
-          beer_glass={this.props.beer_glass}
-          wine_glass={this.props.wine_glass}
-          beer_bottle={this.props.beer_bottle}
-          wine_bottle={this.props.wine_bottle}
+          beer_glass={this.state.beer_glass}
+          wine_glass={this.state.wine_glass}
+          beer_bottle= {this.state.beer_bottle}
+          wine_bottle= {this.state.wine_bottle}
+          changeBeerGlass ={this.handleClickBeer}
+          changeWineGlass ={this.handleClickWine}
+          sendOrder = {this.sendOrder}
           />}/>
       <Route exact path='/inventory' component={InventoryTable}/>
       <Route exact path='/about' component={AboutPage}/>
