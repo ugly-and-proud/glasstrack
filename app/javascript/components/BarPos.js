@@ -9,10 +9,7 @@ import { Nav,
      Form
   } from 'reactstrap'
 
-import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
-=======
-import {changeWine, getPrice, changeBeer} from '../API_calls/index'
-
+import { getPriceWine,getPriceBeer} from '../API_calls/index'
 
 
 class BarPos extends React.Component {
