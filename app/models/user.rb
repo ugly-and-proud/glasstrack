@@ -11,7 +11,7 @@ class User < ApplicationRecord
         self.add_role(:bartender) if self.roles.blank?
     end
 
-    devise :database_authenticatable, :registerable,
+    devise :database_authenticatable,
             :recoverable, :rememberable, :validatable
 
 end

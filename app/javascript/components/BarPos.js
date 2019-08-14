@@ -52,7 +52,6 @@ class BarPos extends React.Component {
       this.props.sendOrder()
       let {beer_glass, wine_glass} = this.props
       let {beer_bottle, wine_bottle} = this.props
-      alert("Success")
       console.log('POS');
       console.log(beer_glass);
       console.log('POS for bottle');

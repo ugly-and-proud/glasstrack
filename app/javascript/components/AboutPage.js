@@ -1,5 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+import calc from './calc.png'
+import inventory from './inventory.png'
+import staff from './staff.png'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import { Nav,
      NavItem,
@@ -17,13 +20,55 @@ class AboutPage extends React.Component {
     return (
 
       <React.Fragment>
+      <section className="content-section text-center">
+          <div className="container">
+              <div className="content-section-heading mb-5 mt-5">
+                  <h2 className="display-4" align = "center">What We Offer</h2>
+              </div>
+              <div className="row d-flex justify-content-around">
+                  <div className="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                      <span className="service-icon rounded-circle mx-auto mb-3">
+                      <img src={calc} alt={"calc"} className='calc'  />
+                      </span>
+                      <h4>
+                      <strong className="offer-titles">POS<br/>System</strong>
+                      </h4>
+                      <div className="offer-text-field">
+                        <p className="offer-text text-faded mb-0">Easy to understand, minimalist point of sale</p>
+                      </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                      <span className="service-icon rounded-circle mx-auto mb-3">
+                       <img src={inventory} alt={"inventory"} className='inventory'  />
+                      </span>
+                      <h4>
+                      <strong className="offer-titles">Inventory Management</strong>
+                      </h4>
+                      <div className="offer-text-field">
+                        <p className="offer-text text-faded mb-0">Tracks your expected inventory and reports discrepancies</p>
+                      </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 mb-5 mb-md-0">
+                      <span className="service-icon rounded-circle mx-auto mb-3">
+                       <img src={staff} alt={"staff"} className='staff'  />
+                      </span>
+                      <h4>
+                      <strong className="offer-titles">Staff Correspondence</strong>
+                      </h4>
+                      <div className="offer-text-field">
+                        <p className="offer-text text-faded mb-0">In-app messaging provides accountability by logging staff communication</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
           <div className="mx-auto">
             <div className='w-75 mx-auto mt-5'>
-              <h2 className="display-3">About Us</h2>
-              <p className="lead mb-5">We are a team of front, back, side-to-side, and any-which-way developers. We are UGLY and PROUD! ✌️</p>
               <hr className="my-4" />
               <br/>
-              <h3 className='text-bold w-75 mb-5'>Created By:</h3>
+              <h3 className="display-4" align = "center">About Us</h3>
+              <p className="lead mb-5" align = "center">We are a team of front, back, side-to-side, and any-which-way developers. We are UGLY and PROUD! ✌️</p>
             </div>
               <div className='about-card-container'>
                   <div className="about-card card mb-5">
