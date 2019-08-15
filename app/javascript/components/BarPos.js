@@ -94,7 +94,7 @@ class BarPos extends React.Component {
                     </tr>
                 </tbody>
              </Table>
-             <Form className='align-content-right'>
+             <Form className='align-content-right mb-5'>
                 <Button id='submit-button' className="btn btn-dark" onClick={this.handleSubmit}>Submit</Button>
              </Form>
 

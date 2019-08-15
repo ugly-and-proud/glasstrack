@@ -20,6 +20,25 @@ class Home extends React.Component {
       </section>
 
 
+    <section>
+    <footer className="page-footer font-small unique-color-dark pt-5">
+      <div className="container" align = "center">
+        <ul className="list-unstyled list-inline text-center" align='center'>
+          <li className="list-inline-item" align='center'>
+            <h5 className="mb-1">Contact Us</h5>
+          </li>
+          <li className="list-inline-item" align='center'>
+            <a href="mailto:team.ugly.n.proud@gmail.com" className="btn btn-outline-primary btn-rounded" target="_blank">Email</a>
+          </li>
+        </ul>
+        <div className="footer-copyright text-center mt-5">© 2019 Copyright:
+          <a href="localhost:3000/"> Glasstrack.com</a>
+        </div>
+      </div>
+
+    </footer>
+    </section>
+
       </React.Fragment>
     );
   }
