@@ -1,6 +1,7 @@
 class InventoriesController < ApplicationController
 
     skip_before_action :verify_authenticity_token
+
     require 'square_connect'
     TOKEN = 'EAAAEDGLveP06IacYRFtCNzyL4x_Y1PS7nP64TidvwtWPiNi0aIs2-ppcROJ2XMI'
 
@@ -14,6 +15,7 @@ class InventoriesController < ApplicationController
     def get_count
         api_instance = SquareConnect::CatalogApi.new
         inventory_api = SquareConnect::InventoryApi.new
+
         the_obj_id = {
             "catalog_object_id":"JPIVA25GH6HPBFEXOWDB47PO"
         }

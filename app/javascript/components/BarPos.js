@@ -32,8 +32,6 @@ class BarPos extends React.Component {
 
   handleSubmit = () => {
       this.props.sendOrder()
-      let {beer_glass, wine_glass} = this.props
-      let {beer_bottle, wine_bottle} = this.props
   }
 
   componentDidMount (){

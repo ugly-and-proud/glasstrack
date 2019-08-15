@@ -70,12 +70,9 @@ class MainApp extends React.Component {
         }
         if (beer_glass >= 4 && beer_glass_leftover === 0) {
             beer_glass_leftover = beer_glass % 4
-            console.log('beer glass');
-            console.log(beer_glass);
             beer_bottle = Math.floor(beer_glass/4)
             beer_glass = 0
-            console.log('beer Bottle');
-            console.log(beer_bottle);
+
         }
         this.setState({
             beer_glass,
@@ -161,7 +158,7 @@ class MainApp extends React.Component {
          </nav>
       </div>
       <Route exact path = '/barpos/'
-      render={(props) => <BarPos
+          render={(props) => <BarPos
           beer_glass      = {this.state.beer_glass}
           wine_glass      = {this.state.wine_glass}
           beer_bottle     = {this.state.beer_bottle}
