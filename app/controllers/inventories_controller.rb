@@ -12,6 +12,31 @@ class InventoriesController < ApplicationController
       config.access_token = TOKEN
     end
 
+    def get_catalog
+        api_instance = SquareConnect::CatalogApi.new
+        inventory_api = SquareConnect::InventoryApi.new
+
+        p params
+        object_id = {
+      "object_ids": [
+        "JPIVA25GH6HPBFEXOWDB47PO",
+        "3IDQ2B6D7XC4H6JKNZP37PYT"
+      ],
+      "include_related_objects": true
+    }
+
+        begin
+          #UpsertCatalogObject
+          result1 = api_instance.batch_retrieve_catalog_objects(object_id)
+          # p result1
+          p result1
+
+        rescue SquareConnect::ApiError => e
+          puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+        end
+        render json: result1
+    end
+
     def get_count
         api_instance = SquareConnect::CatalogApi.new
         inventory_api = SquareConnect::InventoryApi.new
@@ -232,6 +257,9 @@ class InventoriesController < ApplicationController
     end
     def beer_change_params
         params.permit(:beer_bottle, :inventory)
+    end
+    def catalog_params
+        params.permit(:catalog_object_id, :catalog)
     end
 
 end
