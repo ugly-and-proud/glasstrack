@@ -6,7 +6,10 @@ import { Nav,
      NavLink,
      Button,
      Table,
-     Form
+     Form, 
+     Popover, 
+     PopoverHeader, 
+     PopoverBody,
   } from 'reactstrap'
 
 import { getPriceWine,getPriceBeer} from '../API_calls/index'
@@ -18,6 +21,10 @@ class BarPos extends React.Component {
     this.state = {
         wine_price: 0,
         beer_price:0,
+    }
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+    popoverOpen: false
     }
   }
 
@@ -32,6 +39,12 @@ class BarPos extends React.Component {
 
   handleSubmit = () => {
       this.props.sendOrder()
+  }
+  
+  toggle() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
   }
 
   componentDidMount (){
@@ -94,10 +107,18 @@ class BarPos extends React.Component {
                     </tr>
                 </tbody>
              </Table>
-             <Form className='align-content-right'>
-                <Button id='submit-button' className="btn btn-dark" onClick={this.handleSubmit}>Submit</Button>
+             <Form className='align-content-right mb-5'>
+                <Button id="PopoverFocus" type="button" className="btn btn-dark submit-button" onClick={this.handleSubmit}>Submit</Button>
+                <Popover id='popover-container'placement="bottom" isOpen={this.state.popoverOpen} target="PopoverFocus" toggle={this.toggle}>
+                    <PopoverHeader>Success
+                        <Button onClick={ this.toggle } className='popover-close btn btn-sm'>X</Button>
+                    </PopoverHeader>
+                  <PopoverBody className='mt-3'>
+                    {beer_glass} beer glasses <br/><br/>
+                    {wine_glass} wine glasses
+                  </PopoverBody>
+                </Popover>
              </Form>
-
              </div>
         </div>
       </div>

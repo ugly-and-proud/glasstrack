@@ -156,8 +156,12 @@ class InventoryTable extends React.Component {
            </tbody>
         </Table>
         </div>
+ controllers_comments
         <div id='inventory-form' className='border p-3 mb-5'>
 
+
+
+        <div id='inventory-form' className='border p-3'>
 
             <h4>Physical Count: </h4>
 
@@ -179,7 +183,7 @@ class InventoryTable extends React.Component {
                 <button type="button" id='submit-button' className="btn btn-dark" onClick={this.handleClick}>Submit</button>
             </form>
         </div>
-        <div id='inventory-form' className='border p-3'>
+        <div id='inventory-form' className='border p-3 mb-5'>
             <h4>Add to Inventory: </h4>
             <form >
                 <div className="form-group">
