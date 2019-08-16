@@ -12,14 +12,12 @@ import { Nav,
      Form
   } from 'reactstrap'
 
- // var spongebob =  '../images/images.png'
-// <img src="http://pngimg.com/uploads/spongebob/spongebob_PNG12.png" className="w-25 p-3" />
 
 
 class AboutPage extends React.Component {
   render () {
     return (
-
+    
       <React.Fragment>
       <section className="content-section text-center">
           <div className="container">

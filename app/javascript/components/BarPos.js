@@ -6,12 +6,11 @@ import { Nav,
      NavLink,
      Button,
      Table,
-     Form, 
-     Popover, 
-     PopoverHeader, 
+     Form,
+     Popover,
+     PopoverHeader,
      PopoverBody,
   } from 'reactstrap'
-
 import { getPriceWine,getPriceBeer} from '../API_calls/index'
 
 
@@ -27,44 +26,41 @@ class BarPos extends React.Component {
     popoverOpen: false
     }
   }
-
-  handleClickBeer = () =>{
-      this.props.changeBeerGlass()
-
-  }
-
-  handleClickWine = () =>{
-      this.props.changeWineGlass()
-  }
-
-  handleSubmit = () => {
-      this.props.sendOrder()
-  }
-  
-  toggle() {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen
-    });
-  }
-
-  componentDidMount (){
-      let {beer_price, wine_price} = this.state
-      getPriceWine()
-          .then(APIcount => {
-              wine_price =APIcount.object.item_variation_data.price_money.amount
-              this.setState({
-                  wine_price:wine_price
-              })
-          })
-      getPriceBeer()
-          .then(APIcount => {
-              beer_price =APIcount.object.item_variation_data.price_money.amount
-              this.setState({
-                  beer_price:beer_price
-              })
-          })
+    // Call the changeBeerGlass function
+    handleClickBeer = () =>{
+        this.props.changeBeerGlass()
 
   }
+  // Call the changeWineGlass function
+    handleClickWine = () =>{
+        this.props.changeWineGlass()
+  }
+  // Call the sendOrder function
+    handleSubmit = () => {
+        this.props.sendOrder()
+  }
+
+    toggle() {
+        this.setState({
+            popoverOpen: !this.state.popoverOpen
+        });
+    }
+
+    // Updates the beer price and wine price state from the API database when component renders for the first time
+    componentDidMount (){
+        let {beer_price, wine_price} = this.state
+        getPriceWine()
+            .then(APIcount => {
+                wine_price = APIcount.object.item_variation_data.price_money.amount
+                this.setState({ wine_price:wine_price })
+            })
+
+        getPriceBeer()
+            .then(APIcount => {
+                beer_price = APIcount.object.item_variation_data.price_money.amount
+                this.setState({ beer_price:beer_price })
+            })
+    }
 
   render () {
       const { beer_price, wine_price} = this.state
