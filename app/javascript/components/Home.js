@@ -27,7 +27,7 @@ class Home extends React.Component {
           <li className="list-inline-item" align='center'>
             <h5 className="mb-1">Contact Us</h5>
           </li>
-          <li className="list-inline-item" align='center'>
+          <li className="list-inline-item ml-3" align='center'>
             <a href="mailto:team.ugly.n.proud@gmail.com" className="btn btn-outline-primary btn-rounded" target="_blank">Email</a>
           </li>
         </ul>
