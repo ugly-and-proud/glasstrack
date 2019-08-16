@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-
+    # Method decides which features the user will have access to based on role
     def root
         if user_signed_in?
             @manager = current_user.has_role? :manager

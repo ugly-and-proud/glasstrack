@@ -104,10 +104,10 @@ class InventoryTable extends React.Component {
                     },
     			})
     		})
-        getCatalog()
-        .then(APIcatalog => {
-            console.log(APIcatalog);
-        })
+        // getCatalog()
+        // .then(APIcatalog => {
+        //     console.log(APIcatalog);
+        // })
 
     }
 

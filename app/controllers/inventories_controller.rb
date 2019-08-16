@@ -1,10 +1,12 @@
 class InventoriesController < ApplicationController
 
+    # Needed to prevent CSRF error
     skip_before_action :verify_authenticity_token
-
+    # Connection to the square_connect GEM file
     require 'square_connect'
-    TOKEN = 'EAAAEDGLveP06IacYRFtCNzyL4x_Y1PS7nP64TidvwtWPiNi0aIs2-ppcROJ2XMI'
 
+    # API Keys and necessary ID
+    TOKEN = 'EAAAEDGLveP06IacYRFtCNzyL4x_Y1PS7nP64TidvwtWPiNi0aIs2-ppcROJ2XMI'
     LOCATION_ID = 'CAWM1WTQJNK6H'
 
     SquareConnect.configure do |config|
@@ -12,47 +14,45 @@ class InventoriesController < ApplicationController
       config.access_token = TOKEN
     end
 
+    # A get method to pull data of the catalog item variations
     def get_catalog
+        # Instanciating the Catalog API
         api_instance = SquareConnect::CatalogApi.new
-        inventory_api = SquareConnect::InventoryApi.new
 
-        p params
-        object_id = {
-      "object_ids": [
-        "JPIVA25GH6HPBFEXOWDB47PO",
-        "3IDQ2B6D7XC4H6JKNZP37PYT"
-      ],
-      "include_related_objects": true
-    }
+        # The JSON request object
+        object_ids = {
+            "object_ids": [
+                "JPIVA25GH6HPBFEXOWDB47PO",
+                "3IDQ2B6D7XC4H6JKNZP37PYT"
+            ],
+            "include_related_objects": true
+        }
 
         begin
-          #UpsertCatalogObject
-          result1 = api_instance.batch_retrieve_catalog_objects(object_id)
-          # p result1
-          p result1
-
+         # p catalog_items from the API databaase
+          catalog_items = api_instance.batch_retrieve_catalog_objects(object_ids)
+          # Check for Errors in the api call and sends back the error
         rescue SquareConnect::ApiError => e
-          puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+          puts "Exception when calling CatalogApi->batch_retrieve_catalog_objects: #{e}"
         end
         render json: result1
     end
 
     def get_count
-        api_instance = SquareConnect::CatalogApi.new
+        # Instanciating the Inventory API
         inventory_api = SquareConnect::InventoryApi.new
-
+        # The JSON requst objects
         the_obj_id = {
             "catalog_object_id":"JPIVA25GH6HPBFEXOWDB47PO"
         }
         obj_opts = {
             "locations_ids":LOCATION_ID
         }
+
         begin
-          #UpsertCatalogObject
+          # Inventory counts from the API database
           result_inventory_count = inventory_api.batch_retrieve_inventory_counts(the_obj_id, obj_opts)
-
-          p result_inventory_count
-
+         # Check for Errors in the api call and sends back the error
         rescue SquareConnect::ApiError => e
           puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
         end
@@ -60,52 +60,51 @@ class InventoriesController < ApplicationController
     end
 
     def get_price_beer
+        # Instanciating the catalog API
         api_instance = SquareConnect::CatalogApi.new
-        inventory_api = SquareConnect::InventoryApi.new
+
         object_id ="3IDQ2B6D7XC4H6JKNZP37PYT"
         opts = {
           include_related_objects: true
         }
+
         begin
-          #UpsertCatalogObject
+          #Item prices from API database
           item_price = api_instance.retrieve_catalog_object(object_id,opts)
-          # p result1
-          p item_price.object.item_variation_data.name
+
         rescue SquareConnect::ApiError => e
-          puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+          puts "Exception when calling CatalogApi->retrieve_catalog_object: #{e}"
         end
         render json:item_price
     end
+
     def get_price_wine
+        # Instanciating from catalog API database again for wine
         api_instance = SquareConnect::CatalogApi.new
-        inventory_api = SquareConnect::InventoryApi.new
+
         object_id ="JPIVA25GH6HPBFEXOWDB47PO"
         opts = {
           include_related_objects: true
         }
+
         begin
-          #UpsertCatalogObject
+          #Item prices from API again for wine
           item_price = api_instance.retrieve_catalog_object(object_id,opts)
-          # p result1
-          p item_price.object.item_variation_data.name
         rescue SquareConnect::ApiError => e
-          puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+          puts "Exception when calling CatalogApi->retrieve_catalog_object: #{e}"
         end
         render json:item_price
     end
 
-
-
     def change_wine
-        api_instance = SquareConnect::CatalogApi.new
         inventory_api = SquareConnect::InventoryApi.new
-
+        # Converts empty wine bottles recieved from client to a string to be used for the JSON request object
         num_it_wine = wine_change_params[:wine_bottle].to_s
+        # Used to create string variable for the date of the inventory change
         date_it_wine = Time.now.to_datetime.rfc3339.to_s
+        # Used to create a unique idempotency key for every new inventory change
         idem_it_wine = Digest::SHA1.hexdigest([Time.now, rand].join).to_s
-
-        p ' num of bottles wine'
-        p num_it_wine
+        # JSON request object to sell an item
         inventory_obj_change_wine = {
           "idempotency_key":idem_it_wine,
           "type": "inventory.count.updated",
@@ -123,28 +122,21 @@ class InventoriesController < ApplicationController
         }
 
         begin
-          #UpsertCatalogObject
-          p ' The object change Wine'
-          p inventory_obj_change_wine
-          result_inventory_change = inventory_api.batch_change_inventory(inventory_obj_change_wine)
-          p 'The Result wine'
-          p result_inventory_change
+        # Calls the API to adjust inventory count
+        inventory_api.batch_change_inventory(inventory_obj_change_wine)
 
         rescue SquareConnect::ApiError => e
           puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
         end
-        # render  json:result_inventory_count
     end
 
     def change_beer
-        api_instance = SquareConnect::CatalogApi.new
+        # See previous method
         inventory_api = SquareConnect::InventoryApi.new
 
         num_it = beer_change_params[:beer_bottle].to_s
         date_it = Time.now.to_datetime.rfc3339.to_s
         idem_it = Digest::SHA1.hexdigest([Time.now, rand].join).to_s
-        p ' num of bottles beer'
-        p num_it
         inventory_obj_change_beer = {
           "idempotency_key":idem_it,
           "type": "inventory.count.updated",
@@ -162,28 +154,19 @@ class InventoriesController < ApplicationController
         }
 
         begin
-          #UpsertCatalogObject
-          p ' The object change Beer'
-          p inventory_obj_change_beer
-          result_inventory_change = inventory_api.batch_change_inventory(inventory_obj_change_beer)
-          p 'The beer result'
-          p result_inventory_change
+            inventory_api.batch_change_inventory(inventory_obj_change_beer)
 
         rescue SquareConnect::ApiError => e
-          puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
+            puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
         end
-        # render  json:result_inventory_count
     end
 
     def add_wine
-        api_instance = SquareConnect::CatalogApi.new
         inventory_api = SquareConnect::InventoryApi.new
 
         num_it = wine_change_params[:wine_bottle].to_s
         date_it = Time.now.to_datetime.rfc3339.to_s
         idem_it = Digest::SHA1.hexdigest([Time.now, rand].join).to_s
-        p ' num of bottles beer'
-        p num_it
         inventory_obj_change_beer = {
           "idempotency_key":idem_it,
           "type": "inventory.count.updated",
@@ -201,27 +184,18 @@ class InventoriesController < ApplicationController
         }
 
         begin
-          #UpsertCatalogObject
-          p ' The object change Beer'
-          p inventory_obj_change_beer
           result_inventory_change = inventory_api.batch_change_inventory(inventory_obj_change_beer)
-          p 'The beer result'
-          p result_inventory_change
 
         rescue SquareConnect::ApiError => e
           puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
         end
-        # render  json:result_inventory_count
     end
     def add_beer
-        api_instance = SquareConnect::CatalogApi.new
         inventory_api = SquareConnect::InventoryApi.new
 
         num_it = beer_change_params[:beer_bottle].to_s
         date_it = Time.now.to_datetime.rfc3339.to_s
         idem_it = Digest::SHA1.hexdigest([Time.now, rand].join).to_s
-        p ' num of bottles beer'
-        p num_it
         inventory_obj_change_beer = {
           "idempotency_key":idem_it,
           "type": "inventory.count.updated",
@@ -239,25 +213,22 @@ class InventoriesController < ApplicationController
         }
 
         begin
-          #UpsertCatalogObject
-          p ' The object change Beer'
-          p inventory_obj_change_beer
           result_inventory_change = inventory_api.batch_change_inventory(inventory_obj_change_beer)
-          p 'The beer result'
-          p result_inventory_change
 
         rescue SquareConnect::ApiError => e
           puts "Exception when calling CatalogApi->upsert_catalog_object: #{e}"
         end
-        # render  json:result_inventory_count
     end
 
+    # Params for each API request 
     def wine_change_params
         params.permit(:wine_bottle, :inventory)
     end
+
     def beer_change_params
         params.permit(:beer_bottle, :inventory)
     end
+
     def catalog_params
         params.permit(:catalog_object_id, :catalog)
     end
