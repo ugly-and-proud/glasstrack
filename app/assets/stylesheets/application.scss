@@ -425,6 +425,11 @@ body {
     width: 100%;
     height: 300px;
 }
+.chris:hover{
+  background-image: url("green;.jpg");
+  background-position: top;
+}
+
 .jessa{
     background-image: url("jessaa.jpeg");
     background-repeat: no-repeat;
@@ -432,6 +437,9 @@ body {
     background-size: cover;
     width: 100%;
     height: 300px;
+}
+.jessa:hover{
+  background-image: url("rita.jpg");
 }
  .lior{
     background-image: url("lior.jpeg");
@@ -441,6 +449,10 @@ body {
     width: 100%;
     height: 300px;
 }
+.lior:hover{
+  background-image: url("red;.jpg");
+  background-position: top;
+}
 .rachael{
     background-image: url("rachael.jpeg");
     background-repeat: no-repeat;
@@ -448,6 +460,10 @@ body {
     background-size: cover;
     width: 100%;
     height: 300px;
+}
+.rachael:hover{
+  background-image: url("yellow;.jpg");
+  background-position: top;
 }
 .jonatan{
     background-image: url("jonatan.jpeg");
@@ -457,7 +473,10 @@ body {
     width: 100%;
     height: 300px;
 }
-
+.jonatan:hover{
+  background-image: url("black;.jpg");
+  background-position: top;
+}
 /* User sign in and sign forms. */
 .login-background{
   // background: url(images/bg.jpg) no-repeat center center fixed;

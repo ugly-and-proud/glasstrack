@@ -20,6 +20,7 @@ class AboutPage extends React.Component {
   render () {
     return (
 
+
       <React.Fragment>
       <section className="content-section text-center">
           <div className="container">
