@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import calc from './calc.png'
-import inventory from './inventory.png'
-import staff from './staff.png'
+import calc from '../assets/calc.png'
+import inventory from '../assets/inventory.png'
+import staff from '../assets/staff.png'
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import { Nav,
      NavItem,

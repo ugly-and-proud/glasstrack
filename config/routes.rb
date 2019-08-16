@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   post '/inventories/change_beer' => "inventories#change_beer"
   post '/inventories/add_beer' => "inventories#add_beer"
   post '/inventories/add_wine' => "inventories#add_wine"
+  get '/inventories/get_catalog' => "inventories#get_catalog"
 
 end

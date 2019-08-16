@@ -8,7 +8,7 @@ import { Nav,
      Table,
      Form
   } from 'reactstrap'
-  import {getCount, addBeer, addWine} from '../API_calls/index'
+  import {getCatalog, getCount, addBeer, addWine} from '../API_calls/index'
 
 
 class InventoryTable extends React.Component {
@@ -104,9 +104,15 @@ class InventoryTable extends React.Component {
                     },
     			})
     		})
+        // getCatalog()
+        // .then(APIcatalog => {
+        //     console.log(APIcatalog);
+        // })
 
     }
 
+    renderTableData (){
+    }
   render () {
       const{ beer_count,wine_count} = this.props
       const{ beer_stock,wine_stock} = this.state.stock
@@ -118,12 +124,11 @@ class InventoryTable extends React.Component {
       var disc_wine    =  act_emp_wine - exp_emp_wine
     return (
       <React.Fragment>
-
         <div className='inventory-table mt-5'>
         <Table className="table table-hover table-bordered">
            <thead className='inventory-top-row'>
                <tr>
-               <th className='font-weight-bold'>Inventory</th>
+               <th className='font-weight-bold'>Inventory:</th>
                <th className='font-weight-bold'>Expected Empty</th>
                <th className='font-weight-bold'>Actual Empty</th>
                <th className='font-weight-bold'>Discrepancy</th>
@@ -132,8 +137,6 @@ class InventoryTable extends React.Component {
                </tr>
            </thead>
            <tbody>
-               <tr>
-               </tr>
                <tr>
                    <th className='text-dark'>Beer</th>
                    <th>{exp_emp_beer}</th>
@@ -153,7 +156,13 @@ class InventoryTable extends React.Component {
            </tbody>
         </Table>
         </div>
+ controllers_comments
+        <div id='inventory-form' className='border p-3 mb-5'>
+
+
+
         <div id='inventory-form' className='border p-3'>
+
             <h4>Physical Count: </h4>
 
             <form >

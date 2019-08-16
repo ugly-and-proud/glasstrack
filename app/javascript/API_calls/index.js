@@ -1,29 +1,24 @@
 const BASE = 'http://localhost:3000'
 
 let getCount = function() {
-// the function name getTrolls is intended to remind you of the restful rails route --> GET '/trolls'.
 	return fetch(BASE + '/inventories/get_count')
 		.then((resp) => {
-           	// resp will be whatever you saw on the page localhost:3000/trolls, it is the result of our fetch call
 			let json = resp.json() // we want to make sure what we have is just the json part of the response
 			return json
 		})
 }
 let getPriceWine = function() {
-// the function name getTrolls is intended to remind you of the restful rails route --> GET '/trolls'.
 	return fetch(BASE + '/inventories/get_price_wine')
 		.then((resp) => {
-           	// resp will be whatever you saw on the page localhost:3000/trolls, it is the result of our fetch call
-			let json = resp.json() // we want to make sure what we have is just the json part of the response
+			let json = resp.json()
 			return json
 		})
 }
 let getPriceBeer = function() {
-// the function name getTrolls is intended to remind you of the restful rails route --> GET '/trolls'.
+// the function name getTrolls is i
 	return fetch(BASE + '/inventories/get_price_beer')
 		.then((resp) => {
-           	// resp will be whatever you saw on the page localhost:3000/trolls, it is the result of our fetch call
-			let json = resp.json() // we want to make sure what we have is just the json part of the response
+			let json = resp.json()
 			return json
 		})
 }
@@ -83,7 +78,13 @@ let addWine = function (change_object) {
 		return resp
 	})
 }
+let getCatalog = function (catalog_obj) {
 
+	return fetch(BASE +'/inventories/get_catalog')
+	.then((resp) => {
+		return resp.json()
+	})
+}
 export  {
 	getCount,
 	changeWine,
@@ -91,5 +92,6 @@ export  {
 	getPriceBeer,
 	changeBeer,
 	addBeer,
-	addWine
+	addWine,
+	getCatalog
 }

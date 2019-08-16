@@ -7,7 +7,7 @@ import Home from './Home'
 import InventoryTable from './InventoryTable'
 import AboutPage from './AboutPage'
 import LogIn from './LogIn'
-import logo from './logo.png'
+import logo from '../assets/logo.png'
 
 import {changeWine, getPriceWine,getPriceBeer, changeBeer} from '../API_calls/index'
 class MainApp extends React.Component {
@@ -158,7 +158,7 @@ class MainApp extends React.Component {
          </nav>
       </div>
       <Route exact path = '/barpos/'
-          render={(props) => <BarPos
+          render          = {(props) => <BarPos
           beer_glass      = {this.state.beer_glass}
           wine_glass      = {this.state.wine_glass}
           beer_bottle     = {this.state.beer_bottle}
