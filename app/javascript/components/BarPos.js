@@ -6,9 +6,9 @@ import { Nav,
      NavLink,
      Button,
      Table,
-     Form, 
-     Popover, 
-     PopoverHeader, 
+     Form,
+     Popover,
+     PopoverHeader,
      PopoverBody,
   } from 'reactstrap'
 
@@ -21,15 +21,26 @@ class BarPos extends React.Component {
     this.state = {
         wine_price: 0,
         beer_price:0,
+        pop_beer:0,
+        pop_wine:0,
+        popoverOpen: false
     }
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-    popoverOpen: false
-    }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleClickBeer = () =>{
+      let { pop_beer } = this.state
       this.props.changeBeerGlass()
+      if (this.state.popoverOpen) {
+          this.setState({
+              pop_beer: 0
+          })
+      }
+      if (!this.state.popoverOpen) {
+          this.setState({
+              pop_beer: pop_beer + 1
+          })
+      }
 
   }
 
@@ -38,13 +49,17 @@ class BarPos extends React.Component {
   }
 
   handleSubmit = () => {
-      this.props.sendOrder()
-  }
-  
-  toggle() {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen
-    });
+      const {pop_beer}= this.state
+      this.setState({
+        popoverOpen: !this.state.popoverOpen,
+      });
+      // this.setState({ beer_glass: e.target.id },() => {
+      //   console.log(this.state.beer_glass)
+      // });
+      // this.setState({ wine_glass: e.target.id },() => {
+      //     console.log(this.state.wine_glass)
+      //   });
+      this.props.sendOrder();
   }
 
   componentDidMount (){
@@ -67,6 +82,7 @@ class BarPos extends React.Component {
   }
 
   render () {
+      const {pop_beer, pop_wine} = this.state
       const { beer_price, wine_price} = this.state
       let { beer_glass, wine_glass} = this.props
     return (
@@ -108,14 +124,14 @@ class BarPos extends React.Component {
                 </tbody>
              </Table>
              <Form className='align-content-right mb-5'>
-                <Button id="PopoverFocus" type="button" className="btn btn-dark submit-button" onClick={this.handleSubmit}>Submit</Button>
-                <Popover id='popover-container'placement="bottom" isOpen={this.state.popoverOpen} target="PopoverFocus" toggle={this.toggle}>
+                <Button id="PopoverFocus" type="button" className="btn btn-dark submit-button mt-4" onClick={this.handleSubmit}>Submit</Button>
+                <Popover id='popover-container'placement="bottom" isOpen={this.state.popoverOpen} target="PopoverFocus" toggle={this.handleSubmit}>
                     <PopoverHeader>Success
-                        <Button onClick={ this.toggle } className='popover-close btn btn-sm'>X</Button>
+                        <Button onClick={ this.handleSubmit } className='popover-close btn btn-sm'>X</Button>
                     </PopoverHeader>
                   <PopoverBody className='mt-3'>
-                    {beer_glass} beer glasses <br/><br/>
-                    {wine_glass} wine glasses
+                    {pop_beer} beer glasses <br/><br/>
+                    {pop_wine} wine glasses
                   </PopoverBody>
                 </Popover>
              </Form>

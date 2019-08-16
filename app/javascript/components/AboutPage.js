@@ -74,7 +74,7 @@ class AboutPage extends React.Component {
             </div>
               <div className='about-card-container'>
                   <div className="about-card card mb-5">
-                    <h3 className="about-card-header" align = "center">Lior Kaufman</h3>
+                    <h3 className="about-card-header" align = "center">Lior<br/>Kaufman</h3>
                     <div className="portfolio-pic" align = "center">
                       <img className="lior" />
                     </div>
@@ -84,7 +84,7 @@ class AboutPage extends React.Component {
                     </div>
                   </div>
                   <div className="about-card card mb-5">
-                    <h3 className="about-card-header" align = "center">Chris McCarthy</h3>
+                    <h3 className="about-card-header" align = "center">Chris<br/>McCarthy</h3>
                     <div className="portfolio-pic" align = "center">
                       <img className="chris" />
                     </div>
@@ -94,7 +94,7 @@ class AboutPage extends React.Component {
                     </div>
                   </div>
                   <div className="about-card card mb-5">
-                    <h3 className="about-card-header" align = "center">Jessa Garcia</h3>
+                    <h3 className="about-card-header" align = "center">Jessa<br/>Garcia</h3>
                     <div className="portfolio-pic" align = "center">
                       <img className="jessa" />
                     </div>
@@ -104,7 +104,7 @@ class AboutPage extends React.Component {
                     </div>
                   </div>
                   <div className="about-card card mb-5">
-                    <h3 className="about-card-header" align = "center">Jonatan Cruz</h3>
+                    <h3 className="about-card-header" align = "center">Jonatan<br/>Cruz</h3>
                     <div className="portfolio-pic" align = "center">
                       <img className="jonatan" />
                     </div>
