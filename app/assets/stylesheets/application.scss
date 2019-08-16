@@ -439,7 +439,7 @@ body {
     height: 300px;
 }
 .jessa:hover{
-  background-image: url("rita.jpg");
+  background-image: url("eye.gif");
 }
  .lior{
     background-image: url("lior.jpeg");
@@ -454,9 +454,9 @@ body {
   background-position: top;
 }
 .rachael{
-    background-image: url("rachael.jpeg");
+    background-image: url("rach.jpeg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
     background-size: cover;
     width: 100%;
     height: 300px;
@@ -464,11 +464,13 @@ body {
 .rachael:hover{
   background-image: url("yellow;.jpg");
   background-position: top;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 .jonatan{
-    background-image: url("jonatan.jpeg");
+    background-image: url("jona.jpeg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
     background-size: cover;
     width: 100%;
     height: 300px;
