@@ -11,7 +11,6 @@ import { Nav,
      PopoverHeader,
      PopoverBody,
   } from 'reactstrap'
-
 import { getPriceWine,getPriceBeer} from '../API_calls/index'
 
 
@@ -62,24 +61,27 @@ class BarPos extends React.Component {
       this.props.sendOrder();
   }
 
-  componentDidMount (){
-      let {beer_price, wine_price} = this.state
-      getPriceWine()
-          .then(APIcount => {
-              wine_price =APIcount.object.item_variation_data.price_money.amount
-              this.setState({
-                  wine_price:wine_price
-              })
-          })
-      getPriceBeer()
-          .then(APIcount => {
-              beer_price =APIcount.object.item_variation_data.price_money.amount
-              this.setState({
-                  beer_price:beer_price
-              })
-          })
+    toggle() {
+        this.setState({
+            popoverOpen: !this.state.popoverOpen
+        });
+    }
 
-  }
+    // Updates the beer price and wine price state from the API database when component renders for the first time
+    componentDidMount (){
+        let {beer_price, wine_price} = this.state
+        getPriceWine()
+            .then(APIcount => {
+                wine_price = APIcount.object.item_variation_data.price_money.amount
+                this.setState({ wine_price:wine_price })
+            })
+
+        getPriceBeer()
+            .then(APIcount => {
+                beer_price = APIcount.object.item_variation_data.price_money.amount
+                this.setState({ beer_price:beer_price })
+            })
+    }
 
   render () {
       const {pop_beer, pop_wine} = this.state
