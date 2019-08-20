@@ -418,7 +418,7 @@ body {
 }
 
 .chris{
-    background-image: url("chris.jpeg");
+    background-image: image-url("chris.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -426,12 +426,12 @@ body {
     height: 300px;
 }
 .chris:hover{
-  background-image: url("green;.jpg");
+  background-image: image-url("green;.jpg");
   background-position: top;
 }
 
 .jessa{
-    background-image: url("jessaa.jpeg");
+    background-image: image-url("jessaa.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -439,10 +439,10 @@ body {
     height: 300px;
 }
 .jessa:hover{
-  background-image: url("eye.gif");
+  background-image: image-url("eye.gif");
 }
  .lior{
-    background-image: url("lior.jpeg");
+    background-image: image-url("lior.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -450,11 +450,11 @@ body {
     height: 300px;
 }
 .lior:hover{
-  background-image: url("red;.jpg");
+  background-image: image-url("red;.jpg");
   background-position: top;
 }
 .rachael{
-    background-image: url("rach.jpeg");
+    background-image: image-url("rach.jpeg");
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
@@ -462,13 +462,13 @@ body {
     height: 300px;
 }
 .rachael:hover{
-  background-image: url("yellow;.jpg");
+  background-image: image-url("yellow;.jpg");
   background-position: top;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 .jonatan{
-    background-image: url("jona.jpeg");
+    background-image: image-url("jona.jpeg");
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
@@ -476,12 +476,12 @@ body {
     height: 300px;
 }
 .jonatan:hover{
-  background-image: url("black;.jpg");
+  background-image: image-url("black;.jpg");
   background-position: top;
 }
 /* User sign in and sign forms. */
 .login-background{
-  // background: url(images/bg.jpg) no-repeat center center fixed;
+  // background: image-url(images/bg.jpg) no-repeat center center fixed;
   // background-color: #ffd4bb;
   background-image: linear-gradient(to bottom right, #FFB488, #ffffff);
   /* Set rules to fill background */
@@ -2664,7 +2664,7 @@ textarea.form-control {
 .was-validated .form-control:valid, .form-control.is-valid {
   border-color: #4BBF73;
   padding-right: calc(1.5em + 1.5rem);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%234BBF73' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-image: image-url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%234BBF73' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: center right calc(0.375em + 0.375rem);
   background-size: calc(0.75em + 0.75rem) calc(0.75em + 0.75rem);
