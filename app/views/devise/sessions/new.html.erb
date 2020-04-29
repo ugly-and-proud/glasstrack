@@ -3,15 +3,20 @@
     <h2>Log in</h2>
     <p>
         For testing purposes we currently only have 2 users
-        Allows access to the inventory page
-        manager@glasstrack.com
-        manager
-
-        Has access only to the POS page
-        user@glasstrack.com
-        user01
+       
         </p>
-
+    <ul>
+      <li>has full access</li>
+      <li>Username: manager@glasstrack.com </li> 
+      <li>password: manager</li>
+    </ul>
+    <ul>
+      <li>access only the POS page</li>
+      <li>Username:      user@glasstrack.com
+ </li> 
+      <li>password:         user01
+</li>
+    </ul>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-horizontal") do |f| %>
       <div class="form-group">
         <%= f.label :email, class: "font-weight-bold" %><br />
